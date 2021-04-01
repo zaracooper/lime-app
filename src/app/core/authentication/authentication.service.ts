@@ -3,14 +3,15 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
-import { HttpErrorHandlerService } from '../services/http-error-handler.service';
+import { HttpErrorHandler } from '../services/http-error-handler.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
+  private eh: HttpErrorHandler = new HttpErrorHandler();
 
-  constructor(private http: HttpClient, private eh: HttpErrorHandlerService) { }
+  constructor(private http: HttpClient) { }
 
   getClientSession(): Observable<object> {
     return this.http.post<object>(
