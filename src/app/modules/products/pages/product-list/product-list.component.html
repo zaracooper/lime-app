@@ -1,1 +1,16 @@
-<p>product-list works!</p>
+<mat-grid-list cols="{{rows}}" rowHeight="4:5" gutterSize="1.5em">
+    <mat-grid-tile *ngFor="let i of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];">
+        <mat-card>
+            <img id="card-image" mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+            <mat-card-content>
+                <mat-card-title>Shiba Inu</mat-card-title>
+                <mat-card-subtitle>$50.00</mat-card-subtitle>
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-flat-button color="primary">Add to cart</button>
+            </mat-card-actions>
+        </mat-card>
+    </mat-grid-tile>
+</mat-grid-list>
+<mat-paginator [length]="100" [pageSize]="20" [pageSizeOptions]="[5, 10, 20]">
+</mat-paginator>
