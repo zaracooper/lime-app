@@ -1,0 +1,37 @@
+#header-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 1em;
+}
+
+#lime-text,
+#store-text {
+    color: #3f51b5;
+}
+
+#lime-text {
+    font-weight: 600;
+}
+
+#store-text {
+    font-weight: 100;
+}
+
+#right-half {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+#left-half {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+#button-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
