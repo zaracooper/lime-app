@@ -1,1 +1,19 @@
-<p>login works!</p>
+<div id="container">
+    <h1 class="mat-display-3">Login</h1>
+    <p>
+        <mat-form-field appearance="outline">
+            <mat-label>Email</mat-label>
+            <input matInput type="email">
+            <mat-icon matPrefix>alternate_email</mat-icon>
+        </mat-form-field>
+    </p>
+    <p>
+        <mat-form-field appearance="outline">
+            <mat-label>Password</mat-label>
+            <input matInput type="password">
+            <mat-icon matPrefix>vpn_key</mat-icon>
+        </mat-form-field>
+    </p>
+    <button mat-flat-button color="primary">Login</button>
+    <p id="newAccount" class="mat-h3">Not registered yet? <a id="newAccountLink" href="/">Create an account.</a></p>
+</div>
