@@ -1,13 +1,13 @@
-<mat-grid-list cols="{{rows}}" rowHeight="4:5" gutterSize="1.5em">
-    <mat-grid-tile *ngFor="let i of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];">
+<mat-grid-list cols="{{cols}}" rowHeight="4:5" gutterSize="1.5em">
+    <mat-grid-tile *ngFor="let products of products">
         <mat-card>
-            <img id="card-image" mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+            <img id="card-image" mat-card-image src="{{product.imageUrl}}" alt="product photo">
             <mat-card-content>
-                <mat-card-title>Shiba Inu</mat-card-title>
-                <mat-card-subtitle>$50.00</mat-card-subtitle>
+                <mat-card-title>{{product.name}}</mat-card-title>
+                <mat-card-subtitle>{{product.prices[0].formattedAmount}}</mat-card-subtitle>
             </mat-card-content>
             <mat-card-actions>
-                <button mat-stroked-button color="primary">Add to cart</button>
+                <button mat-stroked-button color="primary">View Item</button>
             </mat-card-actions>
         </mat-card>
     </mat-grid-tile>
