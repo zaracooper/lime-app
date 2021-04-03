@@ -25,7 +25,7 @@ export class PaypalPaymentService {
       .pipe(catchError(this.eh.handleError));
   }
 
-  updatePaypalPayment(id: string, paypalPayerId: number): Observable<PaypalPayment> {
+  updatePaypalPayment(id: string, paypalPayerId: string): Observable<PaypalPayment> {
     return this.http.patch<PaypalPayment>(
       `${this.url}/${id}`,
       { paypalPayerId: paypalPayerId }
