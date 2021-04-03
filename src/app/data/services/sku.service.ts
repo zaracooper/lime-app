@@ -21,7 +21,7 @@ export class SkuService {
 
     return this.http.get<Sku[]>(
       `${environment.apiUrl}/api/skus`,
-      { withCredentials: true, params: params })
+      { params: params })
       .pipe(catchError(this.eh.handleError));
   }
 }
