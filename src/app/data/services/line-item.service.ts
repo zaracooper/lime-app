@@ -26,7 +26,7 @@ export class LineItemService {
   }
 
   updateLineItem(id: string, quantity: number): Observable<LineItem> {
-    return this.http.patch<LineItem>(`${this.url}/${id}`, { quantity: quantity, id: id })
+    return this.http.patch<LineItem>(`${this.url}/${id}`, { quantity: quantity })
       .pipe(catchError(this.eh.handleError));
   }
 
