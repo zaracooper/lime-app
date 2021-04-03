@@ -21,17 +21,17 @@ export class LineItemService {
   }
 
   getLineItem(id: string): Observable<LineItem> {
-    return this.http.get<LineItem>(this.url)
+    return this.http.get<LineItem>(`${this.url}/${id}`)
       .pipe(catchError(this.eh.handleError));
   }
 
   updateLineItem(id: string, quantity: number): Observable<LineItem> {
-    return this.http.patch<LineItem>(this.url, { quantity: quantity, id: id })
+    return this.http.patch<LineItem>(`${this.url}/${id}`, { quantity: quantity, id: id })
       .pipe(catchError(this.eh.handleError));
   }
 
   deleteLineItem(id: string): Observable<LineItem> {
-    return this.http.delete<LineItem>(this.url)
+    return this.http.delete<LineItem>(`${this.url}/${id}`)
       .pipe(catchError(this.eh.handleError));
   }
 }

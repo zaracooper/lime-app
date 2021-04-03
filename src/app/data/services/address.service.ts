@@ -21,7 +21,7 @@ export class AddressService {
   }
 
   getAddress(id: string): Observable<Address> {
-    return this.http.get<Address>(this.url)
+    return this.http.get<Address>(`${this.url}/${id}`)
       .pipe(catchError(this.eh.handleError));
   }
 }

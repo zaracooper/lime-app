@@ -23,7 +23,7 @@ export class CustomerAddressService {
   }
 
   getCustomerAddress(id: string): Observable<CustomerAddress> {
-    return this.http.get<CustomerAddress>(this.url)
+    return this.http.get<CustomerAddress>(`${this.url}/${id}`)
       .pipe(catchError(this.eh.handleError));
   }
 }
