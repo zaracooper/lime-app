@@ -13,10 +13,11 @@ export class OptionsInterceptor implements HttpInterceptor {
   constructor() { }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    request.headers.set('Content-Type', 'application/json');
     request = request.clone({
+      headers: request.headers.set('Content-Type', 'application/json'),
       withCredentials: true
     });
+
     return next.handle(request);
   }
 }
