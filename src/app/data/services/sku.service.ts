@@ -11,8 +11,14 @@ import { Sku } from 'src/app/data/schema/sku';
 })
 export class SkuService {
   private eh: HttpErrorHandler = new HttpErrorHandler();
+  private url: string = `${environment.apiUrl}/api/skus`;
 
   constructor(private http: HttpClient) { }
+
+  getSku(id: string): Observable<Sku> {
+    return this.http.get<Sku>(`${this.url}/${id}`)
+      .pipe(catchError(this.eh.handleError));
+  }
 
   getSkus(page: number, pageSize: number): Observable<Sku[]> {
     let params = new HttpParams();
@@ -20,7 +26,7 @@ export class SkuService {
     params.append('pageSize', pageSize.toString());
 
     return this.http.get<Sku[]>(
-      `${environment.apiUrl}/api/skus`,
+      this.url,
       { params: params })
       .pipe(catchError(this.eh.handleError));
   }
