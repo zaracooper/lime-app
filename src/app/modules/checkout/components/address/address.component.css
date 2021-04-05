@@ -1,0 +1,19 @@
+mat-checkbox {
+    margin-bottom: 1em;
+}
+
+.row {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+@media only screen and (min-width: 600px) {
+    .row {
+        flex-direction: row;
+    }
+    mat-form-field {
+        margin-right: 1em;
+    }
+}
