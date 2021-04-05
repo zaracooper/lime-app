@@ -13,15 +13,17 @@ import { BillingAddressComponent } from './pages/billing-address/billing-address
 import { ShippingAddressComponent } from './pages/shipping-address/shipping-address.component';
 import { ShippingMethodsComponent } from './pages/shipping-methods/shipping-methods.component';
 import { MatRadioModule } from '@angular/material/radio';
+import { PaymentComponent } from './pages/payment/payment.component';
 
 @NgModule({
-  declarations: [CustomerComponent, TitleComponent, AddressComponent, BillingAddressComponent, ShippingAddressComponent, ShippingMethodsComponent],
+  declarations: [CustomerComponent, TitleComponent, AddressComponent, BillingAddressComponent, ShippingAddressComponent, ShippingMethodsComponent, PaymentComponent],
   imports: [
     RouterModule.forChild([
       { path: 'customer', component: CustomerComponent },
       { path: 'billing-address', component: BillingAddressComponent },
       { path: 'shipping-address', component: ShippingAddressComponent },
-      { path: 'shipping-methods', component: ShippingMethodsComponent }
+      { path: 'shipping-methods', component: ShippingMethodsComponent },
+      { path: 'payment', component: PaymentComponent }
     ]),
     MatInputModule,
     MatIconModule,
