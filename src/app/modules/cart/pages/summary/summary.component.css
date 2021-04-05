@@ -75,6 +75,12 @@
     align-items: center;
 }
 
+#checkout-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 @media only screen and (min-width: 600px) {
     .line-item {
         flex-direction: row;
