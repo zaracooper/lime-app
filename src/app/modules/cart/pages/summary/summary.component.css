@@ -1,0 +1,102 @@
+.remove-button {
+    margin-left: 1em;
+}
+
+.costLabel {
+    font-weight: 500;
+    min-width: 12em;
+}
+
+#totalLabel {
+    min-width: 9em;
+}
+
+.costItem {
+    display: flex;
+    color: gray;
+}
+
+.costSummary {
+    display: flex;
+    flex-direction: column;
+    margin: 1em 0;
+}
+
+#subtotal,
+#total {
+    color: black;
+}
+
+.itemTotal {
+    margin-left: 1em;
+    min-width: 10em;
+    text-align: right;
+}
+
+#total {
+    font-weight: bold;
+}
+
+.costItem h2,
+.costItem h3,
+.costItem p {
+    margin-bottom: 0;
+}
+
+.image-xs {
+    height: 4em;
+    width: 4em;
+    margin-right: 1em;
+}
+
+.line-item {
+    display: flex;
+    flex-direction: column;
+    margin: 1em;
+    align-items: flex-start;
+}
+
+#line-details {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    min-width: 9em;
+}
+
+#product-details,
+#product-config {
+    display: flex;
+    flex-direction: row;
+    width: inherit;
+}
+
+#product-config {
+    margin-top: 1em;
+    align-items: center;
+}
+
+@media only screen and (min-width: 600px) {
+    .line-item {
+        flex-direction: row;
+    }
+    .quantity {
+        margin-left: 3em;
+    }
+    .costSummary {
+        display: flex;
+        flex-direction: column;
+        padding: 0 6em;
+        margin: 1em 0;
+    }
+    .costLabel {
+        font-weight: 500;
+        min-width: 16em;
+    }
+    #totalLabel {
+        min-width: 12em;
+    }
+    .itemTotal {
+        margin-left: 1.5em;
+        min-width: 3em;
+    }
+}

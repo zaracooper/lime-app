@@ -10,6 +10,7 @@ import { ProductsModule } from './modules/products/products.module';
 import { CoreModule } from './core/core.module';
 import { AuthenticationService } from './core/authentication/authentication.service';
 import { OptionsInterceptor } from './core/interceptor/options.interceptor';
+import { CartModule } from './modules/cart/cart.module';
 import { Logger } from './core/services/logger.service';
 
 function getSession(authService: AuthenticationService) {
@@ -29,6 +30,7 @@ function getSession(authService: AuthenticationService) {
     BrowserAnimationsModule,
     AuthModule,
     ProductsModule,
+    CartModule,
     CoreModule
   ],
   providers: [
@@ -36,13 +38,13 @@ function getSession(authService: AuthenticationService) {
       provide: HTTP_INTERCEPTORS,
       useClass: OptionsInterceptor,
       multi: true
-    },
-    {
-      provide: APP_INITIALIZER,
-      useFactory: getSession,
-      multi: true,
-      deps: [AuthenticationService]
     }
+    // {
+    //   provide: APP_INITIALIZER,
+    //   useFactory: getSession,
+    //   multi: true,
+    //   deps: [AuthenticationService]
+    // }
   ],
   bootstrap: [AppComponent]
 })
