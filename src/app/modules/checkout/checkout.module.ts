@@ -8,13 +8,14 @@ import { TitleComponent } from './components/title/title.component';
 import { AddressComponent } from './components/address/address.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatButtonModule } from '@angular/material/button';
+import { BillingAddressComponent } from './pages/billing-address/billing-address.component';
 
 @NgModule({
-  declarations: [CustomerComponent, TitleComponent, AddressComponent],
+  declarations: [CustomerComponent, TitleComponent, AddressComponent, BillingAddressComponent],
   imports: [
     RouterModule.forChild([
       { path: 'customer', component: CustomerComponent },
-      { path: 'address', component: AddressComponent }
+      { path: 'billing-address', component: BillingAddressComponent }
     ]),
     MatInputModule,
     MatIconModule,
