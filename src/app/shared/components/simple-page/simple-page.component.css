@@ -1,8 +1,8 @@
-.icon-display {
+.icon {
     transform: scale(7);
 }
 
-#icon {
+#icon-container {
     height: 16em;
     width: 16em;
     display: flex;

@@ -1,0 +1,9 @@
+<div id="container">
+    <app-title no="{{number}}" title="{{title}}" subtitle="{{subtitle}}"></app-title>
+    <div *ngIf="icon" id="icon-container">
+        <mat-icon color="primary" class="icon">{{icon}}</mat-icon>
+    </div>
+    <button mat-flat-button color="primary">
+        {{buttonText}}
+    </button>
+</div>

@@ -14,6 +14,7 @@ import { CartModule } from './modules/cart/cart.module';
 import { Logger } from './core/services/logger.service';
 import { CheckoutModule } from './modules/checkout/checkout.module';
 
+
 function getSession(authService: AuthenticationService) {
   authService.getClientSession().subscribe(
     () => { },
