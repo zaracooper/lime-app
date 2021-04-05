@@ -1,0 +1,27 @@
+#content {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: start;
+    padding: 2em;
+}
+
+#page {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    flex-direction: column;
+}
+
+@media only screen and (min-width: 600px) {
+    #content {
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+    }
+}
+
+app-header {
+    flex: 0;
+}
