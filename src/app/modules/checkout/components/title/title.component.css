@@ -1,0 +1,29 @@
+h1 {
+    margin-bottom: 0 !important;
+}
+
+#header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 3em;
+}
+
+#subheading {
+    color: gray;
+}
+
+#no {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: black;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    color: white;
+    padding: 12px;
+    margin-right: 15px !important;
+    text-align: center;
+}
