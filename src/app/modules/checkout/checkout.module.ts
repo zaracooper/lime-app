@@ -1,19 +1,21 @@
 import { NgModule } from '@angular/core';
-import { CustomerComponent } from './pages/customer/customer.component';
 import { RouterModule } from '@angular/router';
-import { MatInputModule } from '@angular/material/input';
-import { MatIconModule } from '@angular/material/icon';
-import { AddressComponent } from './components/address/address.component';
-import { MatCheckboxModule } from '@angular/material/checkbox';
+
 import { MatButtonModule } from '@angular/material/button';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
 import { MatDividerModule } from '@angular/material/divider';
-import { BillingAddressComponent } from './pages/billing-address/billing-address.component';
-import { ShippingAddressComponent } from './pages/shipping-address/shipping-address.component';
-import { ShippingMethodsComponent } from './pages/shipping-methods/shipping-methods.component';
 import { MatRadioModule } from '@angular/material/radio';
+
+import { AddressComponent } from './components/address/address.component';
+import { BillingAddressComponent } from './pages/billing-address/billing-address.component';
+import { CustomerComponent } from './pages/customer/customer.component';
 import { PaymentComponent } from './pages/payment/payment.component';
 import { PlaceOrderComponent } from './pages/place-order/place-order.component';
 import { SharedModule } from './../../shared/shared.module';
+import { ShippingAddressComponent } from './pages/shipping-address/shipping-address.component';
+import { ShippingMethodsComponent } from './pages/shipping-methods/shipping-methods.component';
 
 @NgModule({
   declarations: [
