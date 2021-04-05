@@ -12,6 +12,7 @@ import { AuthenticationService } from './core/authentication/authentication.serv
 import { OptionsInterceptor } from './core/interceptor/options.interceptor';
 import { CartModule } from './modules/cart/cart.module';
 import { Logger } from './core/services/logger.service';
+import { CheckoutModule } from './modules/checkout/checkout.module';
 
 function getSession(authService: AuthenticationService) {
   authService.getClientSession().subscribe(
@@ -31,7 +32,8 @@ function getSession(authService: AuthenticationService) {
     AuthModule,
     ProductsModule,
     CartModule,
-    CoreModule
+    CoreModule,
+    CheckoutModule
   ],
   providers: [
     {
