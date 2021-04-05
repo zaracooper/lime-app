@@ -1,0 +1,75 @@
+.image-xs {
+    height: 4em;
+    width: 4em;
+    margin-right: 1em;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 1em;
+}
+
+#shipment-details {
+    display: flex;
+    flex-direction: column;
+    min-width: 9em;
+}
+
+#shipment-details h4 {
+    margin: 0;
+    font-weight: 500;
+}
+
+#quantity-section {
+    display: flex;
+}
+
+#quantity-label {
+    font-weight: 500;
+    min-width: 6em;
+}
+
+mat-divider {
+    margin-bottom: 1em;
+    margin-top: 2em;
+}
+
+.radio-button {
+    display: flex;
+    flex-direction: column;
+}
+
+.radio-label {
+    font-weight: 500;
+}
+
+mat-radio-button p {
+    margin: 0;
+}
+
+mat-radio-button {
+    margin-top: 5px;
+}
+
+.radio-button div {
+    display: flex;
+}
+
+button {
+    margin: 5em 0;
+}
+
+@media only screen and (min-width: 600px) {
+    .radio-button {
+        display: flex;
+        flex-direction: row;
+    }
+    .radio-label {
+        padding-left: 1em;
+    }
+    mat-radio-group {
+        display: flex;
+        flex-direction: column;
+    }
+}

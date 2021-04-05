@@ -1,0 +1,46 @@
+<div id="container">
+    <app-title no="4" title="Shipping Methods" subtitle="How to ship your packages"></app-title>
+    <div *ngFor="let j of [1, 2, 3]; let isLast = last">
+        <h1>Shipment {{j}} of 3</h1>
+        <div class="row" *ngFor="let i of [1, 2, 3, 4]">
+            <img class="image-xs" src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+            <div id="shipment-details">
+                <h4>Item Name</h4>
+                <p>Item Code</p>
+            </div>
+            <div id="quantity-section">
+                <p id="quantity-label">Quantity: </p>2
+            </div>
+        </div>
+        <mat-radio-group>
+            <mat-radio-button value="1">
+                <div class="radio-button">
+                    <p>Standard Shipping</p>
+                    <div>
+                        <p class="radio-label">Cost:</p>
+                        <p>&nbsp;$7.00</p>
+                    </div>
+                    <div>
+                        <p class="radio-label">Timeline:</p>
+                        <p>&nbsp;Available in 3-5 days</p>
+                    </div>
+                </div>
+            </mat-radio-button>
+            <mat-radio-button value="2">
+                <div class="radio-button">
+                    <p>Express Shipping</p>
+                    <div>
+                        <p class="radio-label">Cost:</p>
+                        <p>&nbsp;$15.00</p>
+                    </div>
+                    <div>
+                        <p class="radio-label">Timeline:</p>
+                        <p>&nbsp;Available in 2-3 days</p>
+                    </div>
+                </div>
+            </mat-radio-button>
+        </mat-radio-group>
+        <mat-divider *ngIf="!isLast"></mat-divider>
+    </div>
+    <button mat-flat-button color="primary">PROCEED TO PAYMENT</button>
+</div>
