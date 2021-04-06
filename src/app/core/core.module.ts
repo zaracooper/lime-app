@@ -12,7 +12,8 @@ import { NotFoundComponent } from './not-found/not-found.component';
   declarations: [HeaderComponent, NotFoundComponent],
   imports: [
     RouterModule.forChild([
-      { path: '404', component: NotFoundComponent }
+      { path: '404', component: NotFoundComponent },
+      { path: '**', redirectTo: '/404' }
     ]),
     SharedModule
   ],
