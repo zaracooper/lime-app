@@ -4,4 +4,18 @@ mat-grid-list {
 
 mat-card {
     border: 1px solid lightgray !important;
+    display: flex;
+    flex-direction: column;
+    max-height: 370px;
+    align-items: center;
+}
+
+img {
+    max-width: 225px;
+    max-height: 225px;
+    border-bottom: 1px solid lightgray;
+}
+
+.grid-layout {
+    width: 80vw;
 }

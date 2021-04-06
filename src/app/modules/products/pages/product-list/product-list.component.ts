@@ -23,14 +23,13 @@ export class ProductListComponent implements OnInit {
       Breakpoints.Web
     ]).subscribe(result => {
       if (result.matches) {
-        if (result.breakpoints['(max-width: 599.98px) and (orientation: portrait)']) {
+        if (result.breakpoints['(max-width: 599.98px) and (orientation: portrait)'] || result.breakpoints['(max-width: 599.98px) and (orientation: landscape)']) {
           this.cols = 1;
         }
-        else if (result.breakpoints['(min-width: 600px) and (max-width: 839.98px) and (orientation: portrait)']) {
-          this.cols = 2;
-        }
-        else if (result.breakpoints['(min-width: 840px) and (orientation: portrait)']) {
+        else if (result.breakpoints['(min-width: 1280px) and (orientation: portrait)'] || result.breakpoints['(min-width: 1280px) and (orientation: landscape)']) {
           this.cols = 4;
+        } else {
+          this.cols = 3;
         }
       }
     });

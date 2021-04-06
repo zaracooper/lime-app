@@ -1,4 +1,4 @@
-<mat-grid-list cols="{{cols}}" rowHeight="4:5" gutterSize="1.5em">
+<mat-grid-list cols="{{cols}}" rowHeight="400px" gutterSize="20px" class="grid-layout">
     <mat-grid-tile *ngFor="let product of products">
         <mat-card>
             <img id="card-image" mat-card-image src="{{product.imageUrl}}" alt="product photo">
@@ -7,7 +7,9 @@
                 <mat-card-subtitle>{{product.prices[0].formattedAmount}}</mat-card-subtitle>
             </mat-card-content>
             <mat-card-actions>
-                <button mat-stroked-button color="primary">View Item</button>
+                <button mat-flat-button color="primary">
+                    View
+                </button>
             </mat-card-actions>
         </mat-card>
     </mat-grid-tile>
