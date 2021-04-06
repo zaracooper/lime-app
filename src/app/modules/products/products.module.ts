@@ -1,14 +1,16 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ProductListComponent } from './pages/product-list/product-list.component';
+import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { LayoutModule } from '@angular/cdk/layout';
+
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatPaginatorModule } from '@angular/material/paginator';
-import { MatCardModule } from '@angular/material/card';
-import { MatButtonModule } from '@angular/material/button';
-import { LayoutModule } from '@angular/cdk/layout';
+
 import { ProductComponent } from './pages/product/product.component';
-import { MatIconModule } from '@angular/material/icon';
+import { ProductListComponent } from './pages/product-list/product-list.component';
 
 
 @NgModule({
