@@ -1,10 +1,7 @@
 #content {
     display: flex;
-    flex: 1;
+    flex-grow: 1;
     flex-direction: column;
-    align-items: center;
-    justify-content: start;
-    padding: 2em;
 }
 
 #page {
@@ -23,5 +20,5 @@
 }
 
 app-header {
-    flex: 0;
+    flex-grow: 0;
 }
