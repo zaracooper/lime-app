@@ -1,4 +1,4 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
@@ -21,13 +21,14 @@ export class SkuService {
   }
 
   getSkus(page: number, pageSize: number): Observable<Sku[]> {
-    let params = new HttpParams();
-    params.append('page', page.toString());
-    params.append('pageSize', pageSize.toString());
-
     return this.http.get<Sku[]>(
       this.url,
-      { params: params })
+      {
+        params: {
+          'page': page.toString(),
+          'pageSize': pageSize.toString()
+        }
+      })
       .pipe(catchError(this.eh.handleError));
   }
 }
