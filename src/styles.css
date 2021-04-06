@@ -1,5 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
 
+:root {
+    --deep-purple: #3f51b5;
+}
+
 html,
 body {
     height: 100%;
