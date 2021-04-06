@@ -4,7 +4,7 @@
             <img id="card-image" mat-card-image src="{{product.imageUrl}}" alt="product photo">
             <mat-card-content>
                 <mat-card-title matTooltip="{{product.name}}">{{product.name |wordWrap:35}}</mat-card-title>
-                <mat-card-subtitle>{{product.prices[0].formattedAmount}}</mat-card-subtitle>
+                <mat-card-subtitle>{{product.prices[0].compareAtAmountFloat | currency:'EUR'}}</mat-card-subtitle>
             </mat-card-content>
             <mat-card-actions>
                 <button mat-flat-button color="primary">
