@@ -15,8 +15,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
   declarations: [ProductListComponent, ProductComponent],
   imports: [
     RouterModule.forChild([
-      { path: '', component: ProductListComponent },
-      { path: 'product', component: ProductComponent }
+      { path: 'product/:id', component: ProductComponent },
+      { path: '', component: ProductListComponent }
     ]),
     MatGridListModule,
     MatPaginatorModule,

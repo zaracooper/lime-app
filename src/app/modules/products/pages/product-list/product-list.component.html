@@ -7,7 +7,7 @@
                 <mat-card-subtitle>{{product.prices[0].compareAtAmountFloat | currency:'EUR'}}</mat-card-subtitle>
             </mat-card-content>
             <mat-card-actions>
-                <button mat-flat-button color="primary">
+                <button mat-flat-button color="primary" [routerLink]="['/product', product.id]">
                     View
                 </button>
             </mat-card-actions>

@@ -1,8 +1,16 @@
-.example-card {
+.product-card {
     max-width: 400px;
 }
 
-.example-header-image {
-    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
-    background-size: cover;
+button {
+    margin: 3px !important;
+}
+
+mat-card {
+    margin: 0 1em 2em 1em;
+    border: 1px solid lightgray !important;
+}
+
+img {
+    border-bottom: 1px solid lightgray;
 }
