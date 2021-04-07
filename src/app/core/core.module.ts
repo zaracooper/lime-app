@@ -5,14 +5,16 @@ import { SharedModule } from '../shared/shared.module';
 
 import { HeaderComponent } from './header/header.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { ErrorComponent } from './error/error.component';
 
 
 
 @NgModule({
-  declarations: [HeaderComponent, NotFoundComponent],
+  declarations: [HeaderComponent, NotFoundComponent, ErrorComponent],
   imports: [
     RouterModule.forChild([
       { path: '404', component: NotFoundComponent },
+      { path: 'error', component: ErrorComponent },
       { path: '**', redirectTo: '/404' }
     ]),
     SharedModule

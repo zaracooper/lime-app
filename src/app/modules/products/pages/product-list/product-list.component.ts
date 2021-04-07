@@ -1,13 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
-import { MatSnackBar } from '@angular/material/snack-bar';
-
 import { UntilDestroy } from '@ngneat/until-destroy';
 
 import { SkuService } from 'src/app/data/services/sku.service';
 import { Sku } from 'src/app/data/schema/sku';
 import { PageEvent } from '@angular/material/paginator';
+import { Router } from '@angular/router';
 
 @UntilDestroy({ checkProperties: true })
 @Component({
@@ -30,8 +29,7 @@ export class ProductListComponent implements OnInit {
   constructor(
     private breakpointObserver: BreakpointObserver,
     private skuService: SkuService,
-    private _snackBar: MatSnackBar
-  ) {
+    private router: Router) {
     breakpointObserver.observe([
       Breakpoints.Handset,
       Breakpoints.Tablet,
@@ -61,12 +59,7 @@ export class ProductListComponent implements OnInit {
           this.products = skus;
           this.length = skus[0].__collectionMeta.recordCount;
         },
-        err => {
-          this._snackBar.open(
-            'Failed to load products.',
-            'Close',
-            { duration: 4000 });
-        }
+        err => this.router.navigateByUrl('/error')
       );
   }
 

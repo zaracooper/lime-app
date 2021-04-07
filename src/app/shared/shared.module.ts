@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { RouterModule } from '@angular/router';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -14,7 +15,7 @@ import { WordWrapPipe } from './pipes/word-wrap.pipe';
 
 @NgModule({
   declarations: [SimplePageComponent, TitleComponent, WordWrapPipe],
-  imports: [CommonModule, MatIconModule, MatButtonModule, MatTooltipModule],
+  imports: [CommonModule, MatIconModule, MatButtonModule, MatTooltipModule, RouterModule],
   exports: [
     CommonModule,
     MatIconModule,

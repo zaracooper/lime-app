@@ -11,6 +11,8 @@ export class SimplePageComponent implements OnInit {
   @Input() number?: string;
   @Input() icon?: string;
   @Input() buttonText: string = '';
+  @Input() buttonLink?: string = '/';
+  @Input() centerText?: boolean = false;
 
   constructor() { }
 

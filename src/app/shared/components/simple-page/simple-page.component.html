@@ -1,9 +1,9 @@
 <div id="container">
-    <app-title no="{{number}}" title="{{title}}" subtitle="{{subtitle}}"></app-title>
+    <app-title no="{{number}}" title="{{title}}" subtitle="{{subtitle}}" [centerText]="centerText"></app-title>
     <div *ngIf="icon" id="icon-container">
         <mat-icon color="primary" class="icon">{{icon}}</mat-icon>
     </div>
-    <button mat-flat-button color="primary">
+    <button mat-flat-button color="primary" routerLink="{{buttonLink}}">
         {{buttonText}}
     </button>
 </div>

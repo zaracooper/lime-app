@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UntilDestroy } from '@ngneat/until-destroy';
 import { map, mergeMap } from 'rxjs/operators';
 import { Sku } from 'src/app/data/schema/sku';
@@ -19,7 +18,7 @@ export class ProductComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private skuService: SkuService,
-    private _snackBar: MatSnackBar) { }
+    private router: Router) { }
 
   ngOnInit(): void {
     this.route.paramMap
@@ -33,12 +32,7 @@ export class ProductComponent implements OnInit {
         })
       ).subscribe(
         {
-          error: (err) => {
-            this._snackBar.open(
-              'Failed to load product.',
-              'Close',
-              { duration: 4000 });
-          }
+          error: (err) => this.router.navigateByUrl('/error')
         }
       );
   }
