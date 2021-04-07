@@ -10,7 +10,7 @@ import { Order, GetOrderParams, UpdateOrderParams } from '../schema/order';
   providedIn: 'root'
 })
 export class OrderService {
-  private eh: HttpErrorHandler = new HttpErrorHandler();
+  private eh: HttpErrorHandler = new HttpErrorHandler('Order Service');
   private url: string = `${environment.apiUrl}/api/orders`;
 
   constructor(private http: HttpClient) { }

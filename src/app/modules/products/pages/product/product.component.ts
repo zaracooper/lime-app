@@ -34,9 +34,10 @@ export class ProductComponent implements OnInit {
       ).subscribe(
         {
           error: (err) => {
-            this._snackBar.open('Failed to load product', 'Close', {
-              duration: 2000,
-            });
+            this._snackBar.open(
+              `Failed to load product. ${err}`,
+              'Close',
+              { duration: 4000 });
           }
         }
       );

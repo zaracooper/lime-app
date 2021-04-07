@@ -62,9 +62,10 @@ export class ProductListComponent implements OnInit {
           this.length = skus[0].__collectionMeta.recordCount;
         },
         err => {
-          this._snackBar.open('Failed to load products', 'Close', {
-            duration: 2000,
-          });
+          this._snackBar.open(
+            `Failed to load products. ${err}`,
+            'Close',
+            { duration: 4000 });
         }
       );
   }

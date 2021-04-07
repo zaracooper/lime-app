@@ -10,7 +10,7 @@ import { PaypalPayment } from '../schema/paypal-payment';
   providedIn: 'root'
 })
 export class PaypalPaymentService {
-  private eh: HttpErrorHandler = new HttpErrorHandler();
+  private eh: HttpErrorHandler = new HttpErrorHandler('Paypal Payment Service');
   private url: string = `${environment.apiUrl}/api/paypal-payments`;
 
   constructor(private http: HttpClient) { }

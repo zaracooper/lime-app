@@ -10,7 +10,7 @@ import { Sku } from 'src/app/data/schema/sku';
   providedIn: 'root'
 })
 export class SkuService {
-  private eh: HttpErrorHandler = new HttpErrorHandler();
+  private eh: HttpErrorHandler = new HttpErrorHandler('Sku Service');
   private url: string = `${environment.apiUrl}/api/skus`;
 
   constructor(private http: HttpClient) { }

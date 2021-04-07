@@ -9,7 +9,7 @@ import { HttpErrorHandler } from '../../shared/services/http-error-handler.servi
   providedIn: 'root'
 })
 export class AuthenticationService {
-  private eh: HttpErrorHandler = new HttpErrorHandler();
+  private eh: HttpErrorHandler = new HttpErrorHandler('Authentication Service');
 
   constructor(private http: HttpClient) { }
 

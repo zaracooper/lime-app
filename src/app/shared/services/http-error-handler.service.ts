@@ -1,20 +1,25 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
+import { Logger } from './logger.service';
 
 export class HttpErrorHandler {
+  private logger = new Logger();
 
-  constructor() { }
+  constructor(level?: string) {
+    this.logger = new Logger(level);
+  }
 
   handleError(err: HttpErrorResponse): Observable<never> {
-    let error = { ...err, displayMessage: '', is404: false };
+    let displayMessage = '';
+
+    this.logger.warn(err);
 
     if (err.error instanceof ErrorEvent) {
-      error.displayMessage = `A client - side error occurred: ${err.error.message}`;
+      displayMessage = `Client-side error: ${err.error.message}`;
     } else {
-      error.displayMessage = `A server - side error occurred.Code: ${err.status}.Message: ${err.message}`;
-      error.is404 = err.status == 404;
+      displayMessage = `Server-side error: ${err.message}`;
     }
 
-    return throwError(error);
+    return throwError(displayMessage);
   }
 }

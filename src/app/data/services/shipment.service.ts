@@ -10,7 +10,7 @@ import { Shipment } from '../schema/shipment';
   providedIn: 'root'
 })
 export class ShipmentService {
-  private eh: HttpErrorHandler = new HttpErrorHandler();
+  private eh: HttpErrorHandler = new HttpErrorHandler('Shipment Service');
   private url: string = `${environment.apiUrl}/api/shipments`;
 
   constructor(private http: HttpClient) { }

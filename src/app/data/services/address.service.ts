@@ -10,7 +10,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class AddressService {
-  private eh: HttpErrorHandler = new HttpErrorHandler();
+  private eh: HttpErrorHandler = new HttpErrorHandler('Address Service');
   private url: string = `${environment.apiUrl}/api/addresses`;
 
   constructor(private http: HttpClient) { }
