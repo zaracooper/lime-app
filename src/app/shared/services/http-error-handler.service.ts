@@ -3,7 +3,7 @@ import { Observable, throwError } from 'rxjs';
 import { Logger } from './logger.service';
 
 export class HttpErrorHandler {
-  private logger = new Logger();
+  private logger: Logger;
 
   constructor(level?: string) {
     this.logger = new Logger(level);
@@ -11,8 +11,6 @@ export class HttpErrorHandler {
 
   handleError(err: HttpErrorResponse): Observable<never> {
     let displayMessage = '';
-
-    this.logger.warn(err);
 
     if (err.error instanceof ErrorEvent) {
       displayMessage = `Client-side error: ${err.error.message}`;
