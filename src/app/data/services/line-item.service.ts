@@ -10,10 +10,9 @@ import { LineItem } from '../schema/line-item';
   providedIn: 'root'
 })
 export class LineItemService {
-  private eh: HttpErrorHandler = new HttpErrorHandler('Line Item Service');
   private url: string = `${environment.apiUrl}/api/line-items`;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private eh: HttpErrorHandler) { }
 
   createLineItem(lineItem: LineItem): Observable<LineItem> {
     return this.http.post<LineItem>(this.url, lineItem)

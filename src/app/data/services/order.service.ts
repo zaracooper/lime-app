@@ -10,10 +10,9 @@ import { Order, GetOrderParams, UpdateOrderParams } from '../schema/order';
   providedIn: 'root'
 })
 export class OrderService {
-  private eh: HttpErrorHandler = new HttpErrorHandler('Order Service');
   private url: string = `${environment.apiUrl}/api/orders`;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private eh: HttpErrorHandler) { }
 
   createOrder(): Observable<Order> {
     return this.http.post<Order>(this.url, {})

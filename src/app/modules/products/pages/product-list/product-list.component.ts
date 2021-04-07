@@ -63,7 +63,7 @@ export class ProductListComponent implements OnInit {
         },
         err => {
           this._snackBar.open(
-            `Failed to load products. ${err}`,
+            'Failed to load products.',
             'Close',
             { duration: 4000 });
         }

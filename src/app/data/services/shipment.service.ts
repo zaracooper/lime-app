@@ -10,10 +10,9 @@ import { Shipment } from '../schema/shipment';
   providedIn: 'root'
 })
 export class ShipmentService {
-  private eh: HttpErrorHandler = new HttpErrorHandler('Shipment Service');
   private url: string = `${environment.apiUrl}/api/shipments`;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private eh: HttpErrorHandler) { }
 
   getShipment(id: string): Observable<Shipment> {
     return this.http.get<Shipment>(`${this.url}/${id}`)

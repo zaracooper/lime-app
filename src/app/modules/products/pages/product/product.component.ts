@@ -35,7 +35,7 @@ export class ProductComponent implements OnInit {
         {
           error: (err) => {
             this._snackBar.open(
-              `Failed to load product. ${err}`,
+              'Failed to load product.',
               'Close',
               { duration: 4000 });
           }

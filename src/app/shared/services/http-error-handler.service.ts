@@ -1,13 +1,13 @@
 import { HttpErrorResponse } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
-import { Logger } from './logger.service';
 
+@Injectable({
+  providedIn: 'root'
+})
 export class HttpErrorHandler {
-  private logger: Logger;
 
-  constructor(level?: string) {
-    this.logger = new Logger(level);
-  }
+  constructor() { }
 
   handleError(err: HttpErrorResponse): Observable<never> {
     let displayMessage = '';

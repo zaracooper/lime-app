@@ -10,10 +10,9 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class AddressService {
-  private eh: HttpErrorHandler = new HttpErrorHandler('Address Service');
   private url: string = `${environment.apiUrl}/api/addresses`;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private eh: HttpErrorHandler) { }
 
   createAddress(address: Address): Observable<Address> {
     return this.http.post<Address>(this.url, address)

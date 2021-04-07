@@ -10,10 +10,9 @@ import { PaypalPayment } from '../schema/paypal-payment';
   providedIn: 'root'
 })
 export class PaypalPaymentService {
-  private eh: HttpErrorHandler = new HttpErrorHandler('Paypal Payment Service');
   private url: string = `${environment.apiUrl}/api/paypal-payments`;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private eh: HttpErrorHandler) { }
 
   createPaypalPayment(payment: PaypalPayment): Observable<PaypalPayment> {
     return this.http.post<PaypalPayment>(this.url, payment)

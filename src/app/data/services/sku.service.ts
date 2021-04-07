@@ -10,10 +10,9 @@ import { Sku } from 'src/app/data/schema/sku';
   providedIn: 'root'
 })
 export class SkuService {
-  private eh: HttpErrorHandler = new HttpErrorHandler('Sku Service');
   private url: string = `${environment.apiUrl}/api/skus`;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private eh: HttpErrorHandler) { }
 
   getSku(id: string): Observable<Sku> {
     return this.http.get<Sku>(`${this.url}/${id}`)

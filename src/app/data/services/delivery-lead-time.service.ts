@@ -10,10 +10,9 @@ import { DeliveryLeadTime } from '../schema/delivery-lead-time';
   providedIn: 'root'
 })
 export class DeliveryLeadTimeService {
-  private eh: HttpErrorHandler = new HttpErrorHandler('Delivery Lead Time Service');
   private url: string = `${environment.apiUrl}/api/delivery-lead-times`;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private eh: HttpErrorHandler) { }
 
   getDeliveryLeadTimes(): Observable<DeliveryLeadTime[]> {
     return this.http.get<DeliveryLeadTime[]>(this.url)
