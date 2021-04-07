@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Address } from 'node:cluster';
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { HttpErrorHandler } from 'src/app/core/services/http-error-handler.service';
+import { HttpErrorHandler } from 'src/app/shared/services/http-error-handler.service';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
