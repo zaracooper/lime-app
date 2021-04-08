@@ -4,25 +4,28 @@ import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { HttpErrorHandler } from 'src/app/shared/services/http-error-handler.service';
 import { environment } from 'src/environments/environment';
-import { CustomerAddress } from '../schema/customer-address';
+import { Customer } from '../schema/customer';
 
 @Injectable({
   providedIn: 'root'
 })
-export class CustomerAddressService {
-  private url: string = `${environment.apiUrl}/api/customer-addresses`;
+export class CustomerService {
+  private url: string = `${environment.apiUrl}/api/customers`;
 
   constructor(private http: HttpClient, private eh: HttpErrorHandler) { }
 
-  createCustomerAddress(addressId: string, customerId: string): Observable<CustomerAddress> {
-    return this.http.post<CustomerAddress>(this.url, {
-      addressId: addressId, customerId: customerId
+  createCustomer(email: string, password: string, firstName: string, lastName: string): Observable<Customer> {
+    return this.http.post<Customer>(this.url, {
+      email: email,
+      password: password,
+      firstName: firstName,
+      lastName: lastName
     })
       .pipe(catchError(this.eh.handleError));
   }
 
-  getCustomerAddresses(id: string): Observable<CustomerAddress> {
-    return this.http.get<CustomerAddress>(`${this.url}`)
+  getCustomer(id: string): Observable<Customer> {
+    return this.http.get<Customer>(`${this.url}/${id}`)
       .pipe(catchError(this.eh.handleError));
   }
 }
