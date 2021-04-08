@@ -1,5 +1,5 @@
 <div id="header-container">
-    <div id="left-half">
+    <div id="left-half" routerLink="/">
         <h1><span id="lime-text">Lime</span><span id="store-text">Store</span></h1>
     </div>
     <div id="right-half">
@@ -7,11 +7,11 @@
             <button mat-icon-button color="primary" aria-label="shopping cart">
                 <mat-icon aria-label="shopping cart">shopping_cart</mat-icon>
             </button>
-            <button mat-icon-button color="primary" aria-label="login">
-                <mat-icon aria-label="login">login</mat-icon>
+            <button mat-icon-button color="primary" aria-label="login" *ngIf="!isLoggedIn">
+                <mat-icon aria-label="login" matTooltip="login" routerLink="/login">login</mat-icon>
             </button>
-            <button mat-icon-button color="primary" aria-label="logout">
-                <mat-icon aria-label="logout">logout</mat-icon>
+            <button mat-icon-button color="primary" aria-label="logout" *ngIf="isLoggedIn" (click)="logout()">
+                <mat-icon aria-label="logout" matTooltip="logout">logout</mat-icon>
             </button>
         </div>
     </div>
