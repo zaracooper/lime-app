@@ -23,7 +23,7 @@ export class AuthenticationService {
   login(email: string, password: string): Observable<object> {
     return this.http.post<object>(
       `${environment.apiUrl}/oauth/token`,
-      { email: email, password: password, grantType: 'password' },
+      { username: email, password: password, grantType: 'password' },
       { headers: { 'Content-Type': 'application/json' } })
       .pipe(catchError(this.eh.handleError));
   }

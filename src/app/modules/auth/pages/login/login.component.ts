@@ -30,20 +30,16 @@ export class LoginComponent {
     this._authService.login(
       credentials.email,
       credentials.password
-    ).subscribe({
-      error: err => {
-        if (err) {
-          this._snackBar.open(
-            'Login failed. Check your login credentials.',
-            'Close',
-            { duration: 6000 });
+    ).subscribe(
+      () => this._router.navigateByUrl('/'),
+      err => {
+        this._snackBar.open(
+          'Login failed. Check your login credentials.',
+          'Close',
+          { duration: 6000 });
 
-          this.loginForm.setValue({ email: credentials.email, password: '' });
-        } else {
-          this._router.navigateByUrl('/')
-        }
+        this.loginForm.patchValue({ password: '' });
       }
-    });
+    );
   }
-
 }
