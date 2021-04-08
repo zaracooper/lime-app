@@ -30,6 +30,13 @@
     justify-content: flex-start;
 }
 
+#left-half:active,
+#left-half:focus {
+    outline: 0;
+    border: none;
+    outline-style: none;
+}
+
 #button-container {
     display: flex;
     justify-content: space-between;

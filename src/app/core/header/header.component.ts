@@ -13,6 +13,7 @@ import { SessionService } from '../authentication/session.service';
 })
 export class HeaderComponent implements OnInit {
   isLoggedIn: boolean = false;
+  showButtons: boolean = true;
 
   constructor(
     private _session: SessionService,
@@ -24,6 +25,10 @@ export class HeaderComponent implements OnInit {
     ).subscribe((events: any) => {
       if (events[0].url == '/login' && events[1].url == '/') {
         this.isCustomerLoggedIn();
+      } else if (events[1].url == '/login' || events[1].url == '/signup') {
+        this.showButtons = false;
+      } else {
+        this.showButtons = true;
       }
     });
   }
