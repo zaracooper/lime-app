@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -18,8 +19,9 @@ import { SignupComponent } from './pages/signup/signup.component';
       { path: 'login', component: LoginComponent },
       { path: 'signup', component: SignupComponent }
     ]),
-    MatInputModule,
     MatFormFieldModule,
+    MatInputModule,
+    ReactiveFormsModule,
     SharedModule
   ]
 })

@@ -1,15 +1,15 @@
-<div id="container">
+<form id="container" [formGroup]="loginForm" (ngSubmit)="login()">
     <h1 class="mat-display-3">Login</h1>
     <mat-form-field appearance="outline">
         <mat-label>Email</mat-label>
-        <input matInput type="email">
+        <input matInput type="email" formControlName="email" required>
         <mat-icon matPrefix>alternate_email</mat-icon>
     </mat-form-field>
     <mat-form-field appearance="outline">
         <mat-label>Password</mat-label>
-        <input matInput type="password">
+        <input matInput type="password" formControlName="password" required>
         <mat-icon matPrefix>vpn_key</mat-icon>
     </mat-form-field>
-    <button mat-flat-button color="primary">Login</button>
+    <button mat-flat-button color="primary" [disabled]="!loginForm.valid">Login</button>
     <p id="newAccount" class="mat-h3">Not registered yet? <a id="newAccountLink" href="/">Create an account.</a></p>
-</div>
+</form>
