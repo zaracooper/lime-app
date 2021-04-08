@@ -1,29 +1,39 @@
-<div id="container">
+<form id="container" [formGroup]="signupForm" (ngSubmit)="signup()">
     <h1 class="mat-display-3">Create Account</h1>
     <mat-form-field appearance="outline">
         <mat-label>First Name</mat-label>
-        <input matInput>
+        <input matInput formControlName="firstName">
         <mat-icon matPrefix>portrait</mat-icon>
     </mat-form-field>
     <mat-form-field appearance="outline">
         <mat-label>Last Name</mat-label>
-        <input matInput>
+        <input matInput formControlName="lastName">
         <mat-icon matPrefix>portrait</mat-icon>
     </mat-form-field>
     <mat-form-field appearance="outline">
         <mat-label>Email</mat-label>
-        <input matInput type="email">
+        <input matInput formControlName="email" type="email">
         <mat-icon matPrefix>alternate_email</mat-icon>
     </mat-form-field>
     <mat-form-field appearance="outline">
         <mat-label>Password</mat-label>
-        <input matInput type="password">
+        <input matInput formControlName="password" type="password">
         <mat-icon matPrefix>vpn_key</mat-icon>
     </mat-form-field>
     <mat-form-field appearance="outline">
         <mat-label>Confirm Password</mat-label>
-        <input matInput type="password">
+        <input matInput formControlName="confirmedPassword" type="password">
         <mat-icon matPrefix>vpn_key</mat-icon>
     </mat-form-field>
-    <button mat-flat-button color="primary">Sign Up</button>
-</div>
+    <div *ngIf="confirmedPassword?.invalid && (confirmedPassword?.dirty || confirmedPassword?.touched)">
+        <mat-error *ngIf="signupForm.hasError('differentPasswords')">
+            Your passwords do not match.
+        </mat-error>
+    </div>
+    <div *ngIf="password?.invalid && (password?.dirty || password?.touched)">
+        <mat-error *ngIf="password?.hasError('minlength')">
+            Your password should be at least 8 characters.
+        </mat-error>
+    </div>
+    <button mat-flat-button color="primary" [disabled]="!signupForm.valid">Sign Up</button>
+</form>
