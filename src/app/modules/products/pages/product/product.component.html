@@ -9,13 +9,20 @@
             </p>
         </mat-card-content>
         <mat-card-actions>
-            <button mat-raised-button color="primary">
+            <button class="quantity" mat-stroked-button [matMenuTriggerFor]="menu">
+                2
+                <mat-icon>expand_more</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu" class="menu-without-scroll">
+                <button mat-menu-item>1</button>
+                <button mat-menu-item>2</button>
+                <button mat-menu-item>3</button>
+                <button mat-menu-item>4</button>
+                <button mat-menu-item>5</button>
+            </mat-menu>
+            <button mat-raised-button color="accent">
                 <mat-icon>add_shopping_cart</mat-icon>
                 Add to cart
-            </button>
-            <button mat-raised-button color="accent">
-                <mat-icon>check_circle</mat-icon>
-                Added
             </button>
             <button mat-raised-button color="primary" routerLink="/">
                 <mat-icon>arrow_back</mat-icon>
