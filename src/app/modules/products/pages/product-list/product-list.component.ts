@@ -7,6 +7,7 @@ import { SkuService } from 'src/app/data/services/sku.service';
 import { Sku } from 'src/app/data/schema/sku';
 import { PageEvent } from '@angular/material/paginator';
 import { Router } from '@angular/router';
+import { HeaderService } from 'src/app/core/header/header.service';
 
 @UntilDestroy({ checkProperties: true })
 @Component({
@@ -27,10 +28,16 @@ export class ProductListComponent implements OnInit {
   products: Sku[] = [];
 
   constructor(
-    private breakpointObserver: BreakpointObserver,
-    private skuService: SkuService,
-    private router: Router) {
-    breakpointObserver.observe([
+    private _breakpointObserver: BreakpointObserver,
+    private _skus: SkuService,
+    private _router: Router,
+    private _header: HeaderService) { }
+
+  ngOnInit() {
+    this.getProducts(1, 20);
+    this._header.setHeaderButtonsVisibility(true);
+
+    this._breakpointObserver.observe([
       Breakpoints.Handset,
       Breakpoints.Tablet,
       Breakpoints.Web
@@ -48,18 +55,14 @@ export class ProductListComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {
-    this.getProducts(1, 20);
-  }
-
   private getProducts(page: number, pageSize: number) {
-    this.skuService.getSkus(page, pageSize)
+    this._skus.getSkus(page, pageSize)
       .subscribe(
         skus => {
           this.products = skus;
           this.length = skus[0].__collectionMeta.recordCount;
         },
-        err => this.router.navigateByUrl('/error')
+        err => this._router.navigateByUrl('/error')
       );
   }
 

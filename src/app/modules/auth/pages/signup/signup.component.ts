@@ -1,8 +1,9 @@
-import { Component, ViewChild } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, FormGroupDirective, ValidationErrors, Validators } from '@angular/forms';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { AbstractControl, FormBuilder, FormGroupDirective, ValidationErrors, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { UntilDestroy } from '@ngneat/until-destroy';
+import { HeaderService } from 'src/app/core/header/header.service';
 import { CustomerService } from 'src/app/data/services/customer.service';
 
 @UntilDestroy({ checkProperties: true })
@@ -11,7 +12,7 @@ import { CustomerService } from 'src/app/data/services/customer.service';
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.css']
 })
-export class SignupComponent {
+export class SignupComponent implements OnInit {
   signupForm = this._fb.group({
     firstName: ['', Validators.required],
     lastName: ['', Validators.required],
@@ -26,7 +27,13 @@ export class SignupComponent {
     private _customer: CustomerService,
     private _fb: FormBuilder,
     private _snackBar: MatSnackBar,
-    private _router: Router) { }
+    private _router: Router,
+    private _headerService: HeaderService
+  ) { }
+
+  ngOnInit() {
+    this._headerService.setHeaderButtonsVisibility(false);
+  }
 
   matchPasswords(signupGroup: AbstractControl): ValidationErrors | null {
     const password = signupGroup.get('password')?.value;
@@ -55,7 +62,6 @@ export class SignupComponent {
         this._snackBar.open('Account successfully created. You will be redirected in 5 seconds.', 'Close', { duration: 5000 });
 
         setTimeout(() => this._router.navigateByUrl('/'), 6000);
-
       },
       err => this._snackBar.open('There was a problem creating your account.', 'Close', { duration: 5000 })
     );

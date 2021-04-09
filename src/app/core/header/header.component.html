@@ -5,7 +5,7 @@
     <div id="right-half">
         <div id="button-container" *ngIf="showButtons">
             <button mat-icon-button color="primary" aria-label="shopping cart">
-                <mat-icon aria-label="shopping cart">shopping_cart</mat-icon>
+                <mat-icon [matBadge]="cartAmount" matBadgeColor="accent" aria-label="shopping cart">shopping_cart</mat-icon>
             </button>
             <button mat-icon-button color="primary" aria-label="login" *ngIf="!isLoggedIn">
                 <mat-icon aria-label="login" matTooltip="login" routerLink="/login">login</mat-icon>

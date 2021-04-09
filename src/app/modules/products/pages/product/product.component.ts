@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UntilDestroy } from '@ngneat/until-destroy';
 import { map, mergeMap } from 'rxjs/operators';
+import { HeaderService } from 'src/app/core/header/header.service';
 import { Sku } from 'src/app/data/schema/sku';
 import { SkuService } from 'src/app/data/services/sku.service';
 
@@ -16,25 +17,29 @@ export class ProductComponent implements OnInit {
   product!: Sku;
 
   constructor(
-    private route: ActivatedRoute,
-    private skuService: SkuService,
-    private router: Router) { }
+    private _route: ActivatedRoute,
+    private _skus: SkuService,
+    private _router: Router,
+    private _header: HeaderService
+  ) { }
 
-  ngOnInit(): void {
-    this.route.paramMap
+  ngOnInit() {
+    this._route.paramMap
       .pipe(
         mergeMap(params => {
           this.id = params.get('id');
-          return this.skuService.getSku(this.id || '');
+          return this._skus.getSku(this.id || '');
         }),
         map((sku) => {
           this.product = sku;
         })
       ).subscribe(
         {
-          error: (err) => this.router.navigateByUrl('/error')
+          error: (err) => this._router.navigateByUrl('/error')
         }
       );
+
+    this._header.setHeaderButtonsVisibility(true);
   }
 
 }
