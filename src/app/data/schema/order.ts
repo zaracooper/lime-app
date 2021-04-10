@@ -1,5 +1,5 @@
 export interface Order {
-    id: string;
+    id?: string;
 }
 
 export enum GetOrderParams {

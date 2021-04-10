@@ -18,7 +18,7 @@ import { SkuService } from 'src/app/data/services/sku.service';
   styleUrls: ['./product.component.css']
 })
 export class ProductComponent implements OnInit {
-  id: string | null = '';
+  id: string = '';
   product!: Sku;
   quantity: number = 0;
 
@@ -37,8 +37,10 @@ export class ProductComponent implements OnInit {
     this._route.paramMap
       .pipe(
         mergeMap(params => {
-          this.id = params.get('id');
-          return this._skus.getSku(this.id || '');
+          const id = params.get('id')
+          this.id = id ? id : '';
+
+          return this._skus.getSku(this.id);
         }),
         map((sku) => {
           this.product = sku;
@@ -55,7 +57,7 @@ export class ProductComponent implements OnInit {
       this._orders.createOrder()
         .pipe(
           mergeMap((order: Order) => {
-            this._cart.orderId = order.id;
+            this._cart.orderId = order.id || '';
 
             return this._lineItems.createLineItem({
               orderId: order.id,
