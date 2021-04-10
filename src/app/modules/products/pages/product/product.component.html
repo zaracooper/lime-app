@@ -9,20 +9,14 @@
             </p>
         </mat-card-content>
         <mat-card-actions>
-            <button class="quantity" mat-stroked-button [matMenuTriggerFor]="menu">
-                {{quantity}}
-                <mat-icon>expand_more</mat-icon>
-            </button>
-            <mat-menu #menu="matMenu" class="menu-without-scroll">
-                <button *ngFor="let no of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]" (click)="setQuantity(no)" mat-menu-item>{{no}}</button>
-            </mat-menu>
+            <app-item-quantity [quantity]="quantity" [maxValue]="10" (setQuantityEvent)="setQuantity($event)"></app-item-quantity>
             <button mat-raised-button color="accent" (click)="addItemToCart()">
                 <mat-icon>add_shopping_cart</mat-icon>
                 Add to cart
             </button>
             <button mat-raised-button color="primary" routerLink="/">
-                <mat-icon>arrow_back</mat-icon>
-                Back
+                <mat-icon>storefront</mat-icon>
+                Continue shopping
             </button>
         </mat-card-actions>
     </mat-card>
