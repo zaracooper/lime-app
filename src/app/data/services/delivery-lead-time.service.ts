@@ -10,7 +10,7 @@ import { DeliveryLeadTime } from '../schema/delivery-lead-time';
   providedIn: 'root'
 })
 export class DeliveryLeadTimeService {
-  private url: string = `${environment.apiUrl}/api/delivery-lead-times`;
+  private url: string = `${environment.apiUrl}/api/delivery_lead_times`;
 
   constructor(private http: HttpClient, private eh: HttpErrorHandler) { }
 

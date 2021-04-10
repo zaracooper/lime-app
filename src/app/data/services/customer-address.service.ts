@@ -10,7 +10,7 @@ import { CustomerAddress } from '../schema/customer-address';
   providedIn: 'root'
 })
 export class CustomerAddressService {
-  private url: string = `${environment.apiUrl}/api/customer-addresses`;
+  private url: string = `${environment.apiUrl}/api/customer_addresses`;
 
   constructor(private http: HttpClient, private eh: HttpErrorHandler) { }
 

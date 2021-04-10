@@ -66,9 +66,13 @@ export class ProductComponent implements OnInit {
             });
           })
         )
-        .subscribe({
-          error: err => this.showErrorSnackBar()
-        });
+        .subscribe(
+          () => {
+            this._cart.incrementItemCount(this.quantity);
+            this.showSuccessSnackBar();
+          },
+          err => this.showErrorSnackBar()
+        );
     } else {
       this._lineItems.createLineItem({
         orderId: this._cart.orderId,
@@ -76,14 +80,22 @@ export class ProductComponent implements OnInit {
         imageUrl: this.product.imageUrl,
         quantity: this.quantity,
         skuCode: this.product.code
-      }).subscribe({
-        error: err => this.showErrorSnackBar()
-      });
+      }).subscribe(
+        () => {
+          this._cart.incrementItemCount(this.quantity);
+          this.showSuccessSnackBar();
+        },
+        err => this.showErrorSnackBar()
+      );
     }
   }
 
   setQuantity(no: number) {
     this.quantity = no;
+  }
+
+  private showSuccessSnackBar() {
+    this._snackBar.open('Item successfully added to cart.', 'Close', { duration: 8000 });
   }
 
   private showErrorSnackBar() {

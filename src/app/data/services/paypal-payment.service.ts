@@ -10,7 +10,7 @@ import { PaypalPayment } from '../schema/paypal-payment';
   providedIn: 'root'
 })
 export class PaypalPaymentService {
-  private url: string = `${environment.apiUrl}/api/paypal-payments`;
+  private url: string = `${environment.apiUrl}/api/paypal_payments`;
 
   constructor(private http: HttpClient, private eh: HttpErrorHandler) { }
 

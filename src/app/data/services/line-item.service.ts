@@ -10,7 +10,7 @@ import { LineItem } from '../schema/line-item';
   providedIn: 'root'
 })
 export class LineItemService {
-  private url: string = `${environment.apiUrl}/api/line-items`;
+  private url: string = `${environment.apiUrl}/api/line_items`;
 
   constructor(private http: HttpClient, private eh: HttpErrorHandler) { }
 
