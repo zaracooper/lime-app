@@ -1,3 +1,9 @@
 export interface LineItem {
-    id: string;
+    id?: string;
+    orderId?: string;
+    skuCode?: string;
+    imageUrl?: string;
+    name?: string;
+    quantity?: number;
+    skuId?: number;
 }

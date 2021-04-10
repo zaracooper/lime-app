@@ -14,7 +14,7 @@ import { HeaderService } from './header.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  @Input() cartAmount: number = 0;
+  cartAmount: number = 0;
 
   isLoggedIn: boolean = false;
   showButtons: boolean = true;
@@ -23,12 +23,13 @@ export class HeaderComponent implements OnInit {
     private _session: SessionService,
     private _snackBar: MatSnackBar,
     private _cart: CartService,
-    private _headerService: HeaderService
+    private _header: HeaderService
   ) { }
 
   ngOnInit() {
     this._session.loggedInStatus.subscribe(status => this.isLoggedIn = status);
-    this._headerService.showHeaderButtons.subscribe(visible => this.showButtons = visible);
+    this._header.showHeaderButtons.subscribe(visible => this.showButtons = visible);
+    this._cart.cartValue.subscribe(cart => this.cartAmount = cart.itemCount);
   }
 
   isCustomerLoggedIn() {

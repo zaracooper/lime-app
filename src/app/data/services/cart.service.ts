@@ -1,10 +1,17 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
+  private cart = new BehaviorSubject({
+    orderId: this.orderId,
+    itemCount: this.itemCount
+  });
+
+  cartValue = this.cart.asObservable();
 
   constructor(private _storage: LocalStorageService) { }
 
@@ -15,6 +22,7 @@ export class CartService {
 
   set orderId(id: string) {
     this._storage.addItem('order-id', id);
+    this.cart.next({ orderId: id, itemCount: this.itemCount });
   }
 
   get itemCount(): number {
@@ -25,6 +33,7 @@ export class CartService {
 
   set itemCount(amount: number) {
     this._storage.addItem('item-count', amount.toString());
+    this.cart.next({ orderId: this.orderId, itemCount: amount });
   }
 
   incrementItemCount(amount: number) {

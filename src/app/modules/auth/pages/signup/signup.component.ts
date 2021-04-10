@@ -28,11 +28,11 @@ export class SignupComponent implements OnInit {
     private _fb: FormBuilder,
     private _snackBar: MatSnackBar,
     private _router: Router,
-    private _headerService: HeaderService
+    private _header: HeaderService
   ) { }
 
   ngOnInit() {
-    this._headerService.setHeaderButtonsVisibility(false);
+    this._header.setHeaderButtonsVisibility(false);
   }
 
   matchPasswords(signupGroup: AbstractControl): ValidationErrors | null {

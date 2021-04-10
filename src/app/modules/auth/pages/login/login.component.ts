@@ -25,11 +25,11 @@ export class LoginComponent implements OnInit {
     private _router: Router,
     private _snackBar: MatSnackBar,
     private _fb: FormBuilder,
-    private _headerService: HeaderService
+    private _header: HeaderService
   ) { }
 
   ngOnInit() {
-    this._headerService.setHeaderButtonsVisibility(false);
+    this._header.setHeaderButtonsVisibility(false);
   }
 
   login() {
