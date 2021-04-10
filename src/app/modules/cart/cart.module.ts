@@ -10,14 +10,16 @@ import { SharedModule } from 'src/app/shared/shared.module';
 
 import { CodesComponent } from './pages/codes/codes.component';
 import { SummaryComponent } from './pages/summary/summary.component';
+import { EmptyComponent } from './pages/empty/empty.component';
 
 
 @NgModule({
-  declarations: [SummaryComponent, CodesComponent],
+  declarations: [SummaryComponent, CodesComponent, EmptyComponent],
   imports: [
     RouterModule.forChild([
       { path: 'cart', component: SummaryComponent },
-      { path: 'codes', component: CodesComponent }
+      { path: 'codes', component: CodesComponent },
+      { path: 'empty', component: EmptyComponent }
     ]),
     MatMenuModule,
     MatDividerModule,
