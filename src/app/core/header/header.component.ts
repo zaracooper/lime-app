@@ -1,8 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { NavigationStart, Router } from '@angular/router';
 import { UntilDestroy } from '@ngneat/until-destroy';
-import { filter, pairwise } from 'rxjs/operators';
 import { CartService } from 'src/app/data/services/cart.service';
 import { SessionService } from '../authentication/session.service';
 import { HeaderService } from './header.service';
@@ -27,16 +25,19 @@ export class HeaderComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this._session.loggedInStatus.subscribe(status => this.isLoggedIn = status);
-    this._header.showHeaderButtons.subscribe(visible => this.showButtons = visible);
-    this._cart.cartValue.subscribe(cart => this.cartAmount = cart.itemCount);
-  }
-
-  isCustomerLoggedIn() {
     this._session.isCustomerLoggedIn()
       .subscribe(
-        () => this.isLoggedIn = true
+        () => {
+          this.isLoggedIn = true;
+          this._session.setLoggedInStatus(true);
+        }
       );
+
+    this._session.loggedInStatus.subscribe(status => this.isLoggedIn = status);
+
+    this._header.showHeaderButtons.subscribe(visible => this.showButtons = visible);
+
+    this._cart.cartValue.subscribe(cart => this.cartAmount = cart.itemCount);
   }
 
   logout() {
