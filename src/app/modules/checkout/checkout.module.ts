@@ -15,6 +15,7 @@ import { PaymentComponent } from './pages/payment/payment.component';
 import { PlaceOrderComponent } from './pages/place-order/place-order.component';
 import { ShippingAddressComponent } from './pages/shipping-address/shipping-address.component';
 import { ShippingMethodsComponent } from './pages/shipping-methods/shipping-methods.component';
+import { EmptyCartGuard } from 'src/app/core/guards/empty-cart.guard';
 
 @NgModule({
   declarations: [
@@ -28,12 +29,16 @@ import { ShippingMethodsComponent } from './pages/shipping-methods/shipping-meth
   ],
   imports: [
     RouterModule.forChild([
-      { path: 'customer', component: CustomerComponent },
-      { path: 'billing-address', component: BillingAddressComponent },
-      { path: 'shipping-address', component: ShippingAddressComponent },
-      { path: 'shipping-methods', component: ShippingMethodsComponent },
-      { path: 'payment', component: PaymentComponent },
-      { path: 'place-order', component: PlaceOrderComponent }
+      {
+        path: '', canActivate: [EmptyCartGuard], children: [
+          { path: 'customer', component: CustomerComponent },
+          { path: 'billing-address', component: BillingAddressComponent },
+          { path: 'shipping-address', component: ShippingAddressComponent },
+          { path: 'shipping-methods', component: ShippingMethodsComponent },
+          { path: 'payment', component: PaymentComponent },
+          { path: 'place-order', component: PlaceOrderComponent }
+        ]
+      }
     ]),
     MatInputModule,
     MatCheckboxModule,
