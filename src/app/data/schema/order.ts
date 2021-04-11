@@ -11,6 +11,8 @@ export interface Order {
     formattedTotalTaxAmount?: string;
     formattedGiftCardAmount?: string;
     formattedTotalAmountWithTaxes?: string;
+    giftCardCode?: string;
+    couponCode?: string;
 }
 
 export enum GetOrderParams {
@@ -22,16 +24,16 @@ export enum GetOrderParams {
 }
 
 export enum UpdateOrderParams {
-    customerEmail,
-    billingAddress,
-    billingAddressClone,
-    shippingAddressSameAsBilling,
-    shippingAddressClone,
-    billingAddressSameAsShipping,
-    shippingAddress,
-    paymentMethod,
-    giftCardOrCouponCode,
-    giftCardCode,
-    couponCode,
-    place,
+    customerEmail = "customerEmail",
+    billingAddress = "billingAddress",
+    billingAddressClone = "billingAddressClone",
+    shippingAddressSameAsBilling = "shippingAddressSameAsBilling",
+    shippingAddressClone = "shippingAddressClone",
+    billingAddressSameAsShipping = "billingAddressSameAsShipping",
+    shippingAddress = "shippingAddress",
+    paymentMethod = "paymentMethod",
+    giftCardOrCouponCode = "giftCardOrCouponCode",
+    giftCardCode = "giftCardCode",
+    couponCode = "couponCode",
+    place = "place"
 }

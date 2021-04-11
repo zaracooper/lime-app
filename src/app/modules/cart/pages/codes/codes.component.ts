@@ -1,15 +1,46 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { FormControl, FormControlDirective } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Order, UpdateOrderParams } from 'src/app/data/schema/order';
+import { CartService } from 'src/app/data/services/cart.service';
+import { OrderService } from 'src/app/data/services/order.service';
 
 @Component({
   selector: 'app-codes',
   templateUrl: './codes.component.html',
   styleUrls: ['./codes.component.css']
 })
-export class CodesComponent implements OnInit {
+export class CodesComponent {
+  couponCode = new FormControl('');
+  giftCardCode = new FormControl('');
 
-  constructor() { }
+  @ViewChild(FormControlDirective) codesDirective: FormControlDirective | undefined;
 
-  ngOnInit(): void {
+  constructor(
+    private _cart: CartService,
+    private _order: OrderService,
+    private _snackBar: MatSnackBar
+  ) { }
+
+  private updateOrder(order: Order, params: UpdateOrderParams, codeType: string) {
+    this._order.updateOrder(order, params)
+      .subscribe(
+        () => {
+          this._snackBar.open(`Successfully added ${codeType} code.`, 'Close', { duration: 8000 });
+          this.couponCode.reset();
+          this.giftCardCode.reset();
+          this.codesDirective?.reset();
+        },
+        err => this._snackBar.open(`There was a problem adding your ${codeType} code.`, 'Close', { duration: 8000 })
+      );
+  }
+
+  addCoupon() {
+    this.updateOrder({ id: this._cart.orderId, couponCode: this.couponCode.value }, UpdateOrderParams.couponCode, 'coupon');
+  }
+
+  addGiftCard() {
+    this.updateOrder({ id: this._cart.orderId, giftCardCode: this.giftCardCode.value }, UpdateOrderParams.giftCardCode, 'gift card');
   }
 
 }

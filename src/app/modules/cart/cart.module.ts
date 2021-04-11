@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { MatDividerModule } from '@angular/material/divider';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -26,10 +27,11 @@ import { EmptyCartGuard } from 'src/app/core/guards/empty-cart.guard';
       },
       { path: 'empty', component: EmptyComponent }
     ]),
-    MatMenuModule,
     MatDividerModule,
     MatFormFieldModule,
     MatInputModule,
+    MatMenuModule,
+    ReactiveFormsModule,
     SharedModule
   ]
 })
