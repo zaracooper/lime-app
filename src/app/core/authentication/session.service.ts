@@ -20,13 +20,13 @@ export class SessionService {
     this.isLoggedIn.next(status);
   }
 
-  isCustomerLoggedIn(): Observable<object> {
-    return this._http.get<object>(`${this.url}/customer`)
+  isCustomerLoggedIn(): Observable<{ message: string }> {
+    return this._http.get<{ message: string }>(`${this.url}/customer`)
       .pipe(catchError(this._eh.handleError));
   }
 
-  logout(): Observable<object> {
-    return this._http.get<object>(`${this.url}/destroy`)
+  logout(): Observable<{ message: string }> {
+    return this._http.get<{ message: string }>(`${this.url}/destroy`)
       .pipe(catchError(this._eh.handleError));
   }
 }
