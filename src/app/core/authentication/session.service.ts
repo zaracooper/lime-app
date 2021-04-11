@@ -21,7 +21,7 @@ export class SessionService {
   }
 
   isCustomerLoggedIn(): Observable<{ message: string }> {
-    return this._http.get<{ message: string }>(`${this.url}/customer`)
+    return this._http.get<{ message: string }>(`${this.url}/customer/status`)
       .pipe(catchError(this._eh.handleError));
   }
 

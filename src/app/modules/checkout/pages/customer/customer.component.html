@@ -2,8 +2,10 @@
     <app-title no="1" title="Customer" subtitle="Billing information and shipping address"></app-title>
     <mat-form-field appearance="outline">
         <mat-label>Email</mat-label>
-        <input matInput>
+        <input matInput [formControl]="email" required>
         <mat-icon matPrefix>alternate_email</mat-icon>
     </mat-form-field>
-    <button mat-flat-button color="primary">PROCEED TO BILLING ADDRESS</button>
+    <button mat-flat-button color="primary" [disabled]="email.invalid" (click)="addCustomerEmail()">
+        PROCEED TO BILLING ADDRESS
+    </button>
 </div>

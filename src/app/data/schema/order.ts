@@ -13,6 +13,7 @@ export interface Order {
     formattedTotalAmountWithTaxes?: string;
     giftCardCode?: string;
     couponCode?: string;
+    customerEmail?: string;
 }
 
 export enum GetOrderParams {

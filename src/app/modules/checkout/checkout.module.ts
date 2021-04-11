@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatInputModule } from '@angular/material/input';
@@ -31,12 +32,12 @@ import { EmptyCartGuard } from 'src/app/core/guards/empty-cart.guard';
     RouterModule.forChild([
       {
         path: '', canActivate: [EmptyCartGuard], children: [
-          { path: 'customer', component: CustomerComponent },
           { path: 'billing-address', component: BillingAddressComponent },
-          { path: 'shipping-address', component: ShippingAddressComponent },
-          { path: 'shipping-methods', component: ShippingMethodsComponent },
+          { path: 'customer', component: CustomerComponent },
           { path: 'payment', component: PaymentComponent },
-          { path: 'place-order', component: PlaceOrderComponent }
+          { path: 'place-order', component: PlaceOrderComponent },
+          { path: 'shipping-address', component: ShippingAddressComponent },
+          { path: 'shipping-methods', component: ShippingMethodsComponent }
         ]
       }
     ]),
@@ -44,6 +45,7 @@ import { EmptyCartGuard } from 'src/app/core/guards/empty-cart.guard';
     MatCheckboxModule,
     MatDividerModule,
     MatRadioModule,
+    ReactiveFormsModule,
     SharedModule
   ]
 })

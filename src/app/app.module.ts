@@ -28,8 +28,8 @@ import { CheckoutModule } from './modules/checkout/checkout.module';
     AuthModule,
     ProductsModule,
     CartModule,
-    CoreModule,
-    CheckoutModule
+    CheckoutModule,
+    CoreModule
   ],
   providers: [
     {
