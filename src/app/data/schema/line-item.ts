@@ -6,4 +6,6 @@ export interface LineItem {
     name?: string;
     quantity?: number;
     skuId?: number;
+    formattedTotalAmount?: string;
+    formattedUnitAmount?: string;
 }

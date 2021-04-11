@@ -7,7 +7,8 @@ import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 })
 export class ItemQuantityComponent implements OnInit {
   @Input() quantity: number = 0;
-  @Input() maxValue: number = 0;
+  @Input() maxValue?: number = 0;
+  @Input() disabled?: boolean = false;
   @Output() setQuantityEvent = new EventEmitter<number>();
 
   values: number[] = [];
@@ -15,8 +16,10 @@ export class ItemQuantityComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    for (let i = 1; i <= this.maxValue; i++) {
-      this.values.push(i);
+    if (this.maxValue) {
+      for (let i = 1; i <= this.maxValue; i++) {
+        this.values.push(i);
+      }
     }
   }
 

@@ -22,9 +22,9 @@ export class OrderService {
   }
 
   getOrder(id: string, orderParam: GetOrderParams): Observable<Order> {
-    let params = new HttpParams();
+    let params = {};
     if (orderParam != GetOrderParams.none) {
-      params.append(orderParam, 'true');
+      params = { [orderParam]: 'true' };
     }
 
     return this._http.get<Order>(`${this.url}/${id}`, { params: params })

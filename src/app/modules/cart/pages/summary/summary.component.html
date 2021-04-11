@@ -1,23 +1,16 @@
-<h3>Order #id (7 items)</h3>
-<div class="line-item" *ngFor="let item of items">
+<h3 id="order-id">Order #{{order.number}} ({{order.skusCount}} items)</h3>
+<div class="line-item" *ngFor="let item of order.lineItems">
     <div id="product-details">
-        <img class="image-xs" src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+        <img class="image-xs" src="{{item.imageUrl}}" alt="product photo">
         <div id="line-details">
             <div>{{item.name}}</div>
-            <div> {{item.price | currency }} </div>
+            <div> {{item.formattedUnitAmount }} </div>
         </div>
     </div>
     <div id="product-config">
-        <button class="quantity" mat-stroked-button [matMenuTriggerFor]="menu">
-            2
-            <mat-icon>expand_more</mat-icon>
-        </button>
-        <mat-menu #menu="matMenu">
-            <button mat-menu-item>1</button>
-            <button mat-menu-item>2</button>
-        </mat-menu>
-        <div class="itemTotal"> {{item.price*2 | currency }} </div>
-        <button mat-icon-button color="warn">
+        <app-item-quantity [quantity]="item.quantity || 0" [disabled]="true"></app-item-quantity>
+        <div class="itemTotal"> {{item.formattedTotalAmount }} </div>
+        <button mat-icon-button color="warn" (click)="deleteLineItem(item.id || '')">
                 <mat-icon>clear</mat-icon>
         </button>
     </div>
@@ -26,16 +19,23 @@
 <div class="costSummary">
     <div class="costItem" *ngFor="let item of summary" [id]="item.id">
         <h3 class="costLabel">{{item.name}}</h3>
-        <p> {{item.amount | currency }} </p>
+        <p> {{item.amount }} </p>
     </div>
 </div>
 <mat-divider></mat-divider>
 <div class="costSummary">
     <div class="costItem" id="total">
         <h2 id="totalLabel">Total</h2>
-        <h2> $166.50 </h2>
+        <h2> {{order.formattedTotalAmountWithTaxes}} </h2>
     </div>
 </div>
 <div id="checkout-button">
-    <button color="primary" mat-flat-button>CHECKOUT</button>
+    <button color="accent" mat-flat-button routerLink="/codes">
+        <mat-icon>redeem</mat-icon>
+        ADD GIFT CARD/COUPON
+    </button>
+    <button color="primary" mat-flat-button>
+        <mat-icon>point_of_sale</mat-icon>
+        CHECKOUT
+    </button>
 </div>

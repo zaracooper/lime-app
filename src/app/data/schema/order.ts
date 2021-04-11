@@ -1,5 +1,16 @@
+import { LineItem } from "./line-item";
+
 export interface Order {
     id?: string;
+    number?: number;
+    skusCount?: number;
+    lineItems?: LineItem[];
+    formattedSubtotalAmount?: string;
+    formattedDiscountAmount?: string;
+    formattedShippingAmount?: string;
+    formattedTotalTaxAmount?: string;
+    formattedGiftCardAmount?: string;
+    formattedTotalAmountWithTaxes?: string;
 }
 
 export enum GetOrderParams {
