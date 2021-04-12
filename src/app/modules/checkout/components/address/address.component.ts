@@ -1,5 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroupDirective, Validators } from '@angular/forms';
+import { MatCheckboxChange } from '@angular/material/checkbox';
 import { Address } from 'src/app/data/schema/address';
 
 @Component({
@@ -10,7 +11,11 @@ import { Address } from 'src/app/data/schema/address';
 export class AddressComponent implements OnInit {
   @Input() buttonText: string = '';
   @Input() showTitle?: boolean = false;
-  @Input() createAddress!: (address: Address) => void;
+
+  @Output() createAddress = new EventEmitter<Address>();
+
+  @Input() checkboxText: string = '';
+  @Output() isCheckboxChecked = new EventEmitter<boolean>();
 
   countryCode: string = '';
 
@@ -24,9 +29,11 @@ export class AddressComponent implements OnInit {
     phone: ['', [Validators.required]]
   });
 
+  @ViewChild(FormGroupDirective) afDirective: FormGroupDirective | undefined;
+
   constructor(private _fb: FormBuilder) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
   }
 
   setCountryCode(code: string) {
@@ -34,16 +41,21 @@ export class AddressComponent implements OnInit {
   }
 
   addAddress() {
-    this.createAddress({
+    this.createAddress.emit({
       firstName: this.addressForm.get('firstName')?.value,
       lastName: this.addressForm.get('lastName')?.value,
       line1: this.addressForm.get('line1')?.value,
       city: this.addressForm.get('city')?.value,
       zipCode: this.addressForm.get('zipCode')?.value,
       stateCode: this.addressForm.get('stateCode')?.value,
-      countryCode: this.addressForm.get('countryCode')?.value,
+      countryCode: this.countryCode,
       phone: this.addressForm.get('phone')?.value
     });
   }
 
+  setCheckboxValue(change: MatCheckboxChange) {
+    if (this.isCheckboxChecked) {
+      this.isCheckboxChecked.emit(change.checked);
+    }
+  }
 }

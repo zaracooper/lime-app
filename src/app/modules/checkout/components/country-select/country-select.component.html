@@ -1,7 +1,7 @@
-<button id="country-select" mat-stroked-button [matMenuTriggerFor]="menu">
+<button id="country-select" mat-stroked-button [matMenuTriggerFor]="countryMenu">
     {{country}}
     <mat-icon>expand_more</mat-icon>
 </button>
-<mat-menu #menu="matMenu">
+<mat-menu #countryMenu="matMenu">
     <button *ngFor="let cnt of countries" (click)="setCountry(cnt)" mat-menu-item>{{cnt.name}}</button>
 </mat-menu>

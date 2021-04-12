@@ -1,41 +1,44 @@
-<form id="container" [formGroup]="addressForm" (ngSubmit)="createAddress()">
+<form id="container" [formGroup]="addressForm">
     <p class="mat-headline" *ngIf="showTitle">Or add a new address</p>
     <div class="row">
         <mat-form-field appearance="outline">
             <mat-label>First Name</mat-label>
-            <input formControlName="firstName" matInput>
+            <input matInput formControlName="firstName">
         </mat-form-field>
         <mat-form-field appearance="outline">
             <mat-label>Last Name</mat-label>
-            <input formControlName="lastName" matInput>
+            <input matInput formControlName="lastName">
         </mat-form-field>
     </div>
     <div class="row">
         <mat-form-field appearance="outline">
             <mat-label>Address</mat-label>
-            <input formControlName="line1" matInput>
+            <input matInput formControlName="line1">
         </mat-form-field>
         <mat-form-field appearance="outline">
             <mat-label>City</mat-label>
-            <input formControlName="city" matInput>
+            <input matInput formControlName="city">
         </mat-form-field>
     </div>
     <div class="row">
-        <app-country-select (setCountryEvent)="setCountryCode($event)"></app-country-select>
         <mat-form-field appearance="outline">
             <mat-label>State Code</mat-label>
-            <input formControlName="stateCode" matInput>
+            <input matInput formControlName="stateCode">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Zip Code</mat-label>
+            <input matInput formControlName="zipCode">
         </mat-form-field>
     </div>
     <div class="row">
         <mat-form-field appearance="outline">
-            <mat-label>Zip Code</mat-label>
-            <input formControlName="zipCode" matInput>
-        </mat-form-field>
-        <mat-form-field appearance="outline">
             <mat-label>Phone</mat-label>
-            <input formControlName="phone" matInput>
+            <input matInput formControlName="phone">
         </mat-form-field>
+        <app-country-select (setCountryEvent)="setCountryCode($event)"></app-country-select>
     </div>
-    <button mat-flat-button color="primary" [disabled]="!addressForm.valid || !countryCode.length">{{buttonText}}</button>
+    <mat-checkbox color="accent" (change)="setCheckboxValue($event)">
+        {{checkboxText}}
+    </mat-checkbox>
+    <button mat-flat-button color="primary" [disabled]="!addressForm.valid || !countryCode.length" (click)="addAddress()">{{buttonText}}</button>
 </form>

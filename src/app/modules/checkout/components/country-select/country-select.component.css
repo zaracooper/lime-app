@@ -1,11 +1,13 @@
 #country-select {
-    min-width: 201px;
-    min-height: 50px;
+    width: 201px;
+    height: 50px;
     margin: 0 15px 22px 15px;
     display: flex;
     align-items: center;
     color: gray;
     font-weight: normal;
+    overflow-x: hidden;
+    overflow-y: hidden;
 }
 
 @media only screen and (min-width: 600px) {
