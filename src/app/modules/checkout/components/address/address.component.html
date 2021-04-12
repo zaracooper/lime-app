@@ -1,44 +1,41 @@
-<div id="container">
+<form id="container" [formGroup]="addressForm" (ngSubmit)="createAddress()">
+    <p class="mat-headline" *ngIf="showTitle">Or add a new address</p>
     <div class="row">
         <mat-form-field appearance="outline">
             <mat-label>First Name</mat-label>
-            <input matInput>
+            <input formControlName="firstName" matInput>
         </mat-form-field>
         <mat-form-field appearance="outline">
             <mat-label>Last Name</mat-label>
-            <input matInput>
+            <input formControlName="lastName" matInput>
         </mat-form-field>
     </div>
     <div class="row">
         <mat-form-field appearance="outline">
             <mat-label>Address</mat-label>
-            <input matInput>
+            <input formControlName="line1" matInput>
         </mat-form-field>
         <mat-form-field appearance="outline">
             <mat-label>City</mat-label>
-            <input matInput>
+            <input formControlName="city" matInput>
         </mat-form-field>
     </div>
     <div class="row">
+        <app-country-select (setCountryEvent)="setCountryCode($event)"></app-country-select>
         <mat-form-field appearance="outline">
-            <mat-label>Country</mat-label>
-            <input matInput>
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-            <mat-label>State</mat-label>
-            <input matInput>
+            <mat-label>State Code</mat-label>
+            <input formControlName="stateCode" matInput>
         </mat-form-field>
     </div>
     <div class="row">
         <mat-form-field appearance="outline">
             <mat-label>Zip Code</mat-label>
-            <input matInput>
+            <input formControlName="zipCode" matInput>
         </mat-form-field>
         <mat-form-field appearance="outline">
             <mat-label>Phone</mat-label>
-            <input matInput>
+            <input formControlName="phone" matInput>
         </mat-form-field>
     </div>
-    <mat-checkbox *ngIf="showCheckbox" class="example-margin">Ship package to same address</mat-checkbox>
-    <button mat-flat-button color="primary">{{buttonText}}</button>
-</div>
+    <button mat-flat-button color="primary" [disabled]="!addressForm.valid || !countryCode.length">{{buttonText}}</button>
+</form>
