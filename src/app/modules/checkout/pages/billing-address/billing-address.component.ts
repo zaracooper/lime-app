@@ -54,7 +54,7 @@ export class BillingAddressComponent implements OnInit {
     this.selectedCustomerAddressId = customerAddressId;
   }
 
-  setSameShippingOrBillingAddress(change: boolean) {
+  setSameShippingAddressAsBilling(change: boolean) {
     this.sameShippingAddressAsBilling = change;
   }
 

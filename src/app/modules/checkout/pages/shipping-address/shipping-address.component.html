@@ -1,2 +1,4 @@
 <app-title no="3" title="Shipping Address" subtitle="Address to ship package to"></app-title>
-<app-address buttonText="PROCEED TO SHIPPING METHOD"></app-address>
+<app-address-list *ngIf="showAddresses" (setAddressEvent)="setCustomerAddress($event)"></app-address-list>
+<mat-divider *ngIf="showAddresses"></mat-divider>
+<app-address [showTitle]="showAddresses" buttonText="PROCEED TO SHIPPING METHODS" checkboxText="Bill to the same address" (isCheckboxChecked)="setSameBillingAddressAsShipping($event)" (createAddress)="updateShippingAddress($event)"></app-address>
