@@ -1,2 +1,4 @@
 <app-title no="2" title="Billing Address" subtitle="Address to bill charges to"></app-title>
-<app-address [showCheckbox]='true' buttonText="PROCEED TO SHIPPING"></app-address>
+<app-address-list *ngIf="showAddresses"></app-address-list>
+<mat-divider *ngIf="showAddresses"></mat-divider>
+<app-address [showTitle]="showAddresses" [showCheckbox]='true' buttonText="PROCEED TO SHIPPING"></app-address>
