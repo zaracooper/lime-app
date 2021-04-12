@@ -21,7 +21,6 @@ import { ShippingMethodsComponent } from './pages/shipping-methods/shipping-meth
 import { EmptyCartGuard } from 'src/app/core/guards/empty-cart.guard';
 import { AddressListComponent } from './components/address-list/address-list.component';
 import { CountrySelectComponent } from './components/country-select/country-select.component';
-import { SameAddressComponent } from './components/same-address/same-address.component';
 
 @NgModule({
   declarations: [
@@ -33,8 +32,7 @@ import { SameAddressComponent } from './components/same-address/same-address.com
     PaymentComponent,
     PlaceOrderComponent,
     AddressListComponent,
-    CountrySelectComponent,
-    SameAddressComponent
+    CountrySelectComponent
   ],
   imports: [
     RouterModule.forChild([
