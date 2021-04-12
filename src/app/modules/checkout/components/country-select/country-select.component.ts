@@ -12,7 +12,7 @@ import { CountryService } from 'src/app/data/services/country.service';
 export class CountrySelectComponent implements OnInit {
   country: string = 'Country';
   countries: Country[] = [];
-  @Output() setQuantityEvent = new EventEmitter<string>();
+  @Output() setCountryEvent = new EventEmitter<string>();
 
   constructor(private _countries: CountryService) { }
 
@@ -27,6 +27,6 @@ export class CountrySelectComponent implements OnInit {
 
   setCountry(value: Country) {
     this.country = value.name || '';
-    this.setQuantityEvent.emit(value.code);
+    this.setCountryEvent.emit(value.code);
   }
 }
