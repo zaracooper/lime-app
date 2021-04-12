@@ -14,6 +14,8 @@ export interface Order {
     giftCardCode?: string;
     couponCode?: string;
     customerEmail?: string;
+    billingAddressId?: string;
+    shippingAddressId?: string;
 }
 
 export enum GetOrderParams {

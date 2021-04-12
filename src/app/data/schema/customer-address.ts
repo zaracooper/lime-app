@@ -1,3 +1,4 @@
 export interface CustomerAddress {
-    id: string;
+    id?: string;
+    name?: string;
 }
