@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 import { UntilDestroy } from '@ngneat/until-destroy';
-import { of } from 'rxjs';
-import { first, mergeMap } from 'rxjs/operators';
+import { combineLatest, Observable } from 'rxjs';
+import { concatMap } from 'rxjs/operators';
 import { SessionService } from 'src/app/core/authentication/session.service';
 import { Address } from 'src/app/data/schema/address';
-import { CustomerAddress } from 'src/app/data/schema/customer-address';
-import { UpdateOrderParams } from 'src/app/data/schema/order';
+import { Order, UpdateOrderParams } from 'src/app/data/schema/order';
 import { AddressService } from 'src/app/data/services/address.service';
 import { CartService } from 'src/app/data/services/cart.service';
 import { CustomerAddressService } from 'src/app/data/services/customer-address.service';
@@ -19,54 +19,100 @@ import { OrderService } from 'src/app/data/services/order.service';
   styleUrls: ['./billing-address.component.css']
 })
 export class BillingAddressComponent implements OnInit {
-  addresses: CustomerAddress[] = [];
   showAddresses: boolean = false;
-  sameShippingOrBillingAddress: boolean = false;
+  sameShippingAddressAsBilling: boolean = false;
+  selectedCustomerAddressId: string = '';
 
   constructor(
     private _addresses: AddressService,
-    private _customerAddresses: CustomerAddressService,
     private _snackBar: MatSnackBar,
     private _session: SessionService,
     private _orders: OrderService,
-    private _cart: CartService) { }
+    private _cart: CartService,
+    private _router: Router,
+    private _customerAddresses: CustomerAddressService) { }
 
   ngOnInit() {
     this._session.loggedInStatus
-      .pipe(first())
       .subscribe(
         status => this.showAddresses = status
       );
   }
 
-  createAddress(address: Address) {
-    this._addresses.createAddress(address)
-      .pipe(
-        mergeMap(address => {
-          let updateParams = [UpdateOrderParams.billingAddress];
-          if (this.sameShippingOrBillingAddress) {
-            updateParams.push(UpdateOrderParams.shippingAddressSameAsBilling);
-          }
-
-          return this._orders.updateOrder({
-            id: this._cart.orderId,
-            billingAddressId: address.id
-          }, updateParams);
-        })
-      )
-      .subscribe({
-        error: err => this._snackBar.open('There was a problem creating your address.', 'Close', { duration: 800 })
-      });
+  updateBillingAddress(address: Address) {
+    if (this.showAddresses && this.selectedCustomerAddressId) {
+      this.cloneAddress();
+    } else if (address.firstName && address.lastName && address.line1 && address.city && address.zipCode && address.stateCode && address.countryCode && address.phone) {
+      this.createAddress(address);
+    }
+    else {
+      this._snackBar.open('Check your address. Some fields are missing.', 'Close');
+    }
   }
 
-  private cloneAddress(id: string) {
-
-  }
-
-  private updateOrderObservable() {
+  setCustomerAddress(customerAddressId: string) {
+    this.selectedCustomerAddressId = customerAddressId;
   }
 
   setSameShippingOrBillingAddress(change: boolean) {
-    this.sameShippingOrBillingAddress = change;
+    this.sameShippingAddressAsBilling = change;
+  }
+
+  private createAddress(address: Address) {
+    this._addresses.createAddress(address)
+      .pipe(
+        concatMap(
+          address => {
+            const update = this.updateOrderObservable({
+              id: this._cart.orderId,
+              billingAddressId: address.id
+            }, [UpdateOrderParams.billingAddress]);
+
+            if (this.showAddresses) {
+              return combineLatest([update, this._customerAddresses.createCustomerAddress(address.id || '', '')]);
+            } else {
+              return update;
+            }
+          }))
+      .subscribe(
+        () => this.showSuccessSnackBar(),
+        err => this.showErrorSnackBar()
+      );
+  }
+
+  private cloneAddress() {
+    this.updateOrderObservable({
+      id: this._cart.orderId,
+      billingAddressCloneId: this.selectedCustomerAddressId
+    }, [UpdateOrderParams.billingAddressClone])
+      .subscribe(
+        () => this.showSuccessSnackBar(),
+        err => this.showErrorSnackBar()
+      );
+  }
+
+  private updateOrderObservable(order: Order, updateParams: UpdateOrderParams[]): Observable<Order> {
+    if (this.sameShippingAddressAsBilling) {
+      updateParams.push(UpdateOrderParams.shippingAddressSameAsBilling);
+    }
+
+    return this._orders.updateOrder(order, updateParams);
+  }
+
+  private showErrorSnackBar() {
+    this._snackBar.open('There was a problem creating your address.', 'Close', { duration: 8000 });
+  }
+
+  private navigateTo(path: string) {
+    setTimeout(() => this._router.navigateByUrl(path), 4000);
+  }
+
+  private showSuccessSnackBar() {
+    this._snackBar.open('Billing address successfully added. Redirecting...', 'Close', { duration: 3000 });
+    if (this.sameShippingAddressAsBilling) {
+      this.navigateTo('/shipping-methods');
+    } else {
+      this.navigateTo('/shipping-address');
+    }
   }
 }

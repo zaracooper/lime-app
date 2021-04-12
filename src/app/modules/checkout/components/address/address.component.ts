@@ -20,13 +20,13 @@ export class AddressComponent implements OnInit {
   countryCode: string = '';
 
   addressForm = this._fb.group({
-    firstName: ['', [Validators.required]],
-    lastName: ['', [Validators.required]],
-    line1: ['', [Validators.required]],
-    city: ['', [Validators.required]],
-    zipCode: ['', [Validators.required]],
-    stateCode: ['', [Validators.required]],
-    phone: ['', [Validators.required]]
+    firstName: [''],
+    lastName: [''],
+    line1: [''],
+    city: [''],
+    zipCode: [''],
+    stateCode: [''],
+    phone: ['']
   });
 
   @ViewChild(FormGroupDirective) afDirective: FormGroupDirective | undefined;
@@ -47,7 +47,7 @@ export class AddressComponent implements OnInit {
       line1: this.addressForm.get('line1')?.value,
       city: this.addressForm.get('city')?.value,
       zipCode: this.addressForm.get('zipCode')?.value,
-      stateCode: this.addressForm.get('stateCode')?.value,
+      stateCode: this.addressForm.get('stateCode')?.value || 'N/A',
       countryCode: this.countryCode,
       phone: this.addressForm.get('phone')?.value
     });

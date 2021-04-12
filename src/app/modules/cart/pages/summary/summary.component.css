@@ -92,6 +92,11 @@ button {
     font-weight: 500;
 }
 
+.no-image {
+    border: 1px solid lightgray;
+    border-radius: 4px;
+}
+
 @media only screen and (min-width: 600px) {
     .line-item {
         flex-direction: row;

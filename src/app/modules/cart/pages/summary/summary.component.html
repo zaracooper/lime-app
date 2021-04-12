@@ -1,7 +1,8 @@
 <h3 id="order-id">Order #{{order.number}} ({{order.skusCount}} items)</h3>
 <div class="line-item" *ngFor="let item of order.lineItems">
     <div id="product-details">
-        <img class="image-xs" src="{{item.imageUrl}}" alt="product photo">
+        <img *ngIf="item.imageUrl" class="image-xs" src="{{item.imageUrl}}" alt="product photo">
+        <div *ngIf="!item.imageUrl" class="image-xs no-image"></div>
         <div id="line-details">
             <div>{{item.name}}</div>
             <div> {{item.formattedUnitAmount }} </div>

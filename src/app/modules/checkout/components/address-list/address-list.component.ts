@@ -2,7 +2,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { MatRadioChange } from '@angular/material/radio';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { of } from 'rxjs';
-import { first, mergeMap } from 'rxjs/operators';
+import { mergeMap } from 'rxjs/operators';
 import { SessionService } from 'src/app/core/authentication/session.service';
 import { CustomerAddress } from 'src/app/data/schema/customer-address';
 import { CustomerAddressService } from 'src/app/data/services/customer-address.service';
@@ -26,7 +26,6 @@ export class AddressListComponent implements OnInit {
   ngOnInit() {
     this._session.loggedInStatus
       .pipe(
-        first(),
         mergeMap(
           status => {
             if (status) {

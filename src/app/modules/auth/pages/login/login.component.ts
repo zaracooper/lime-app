@@ -15,7 +15,7 @@ import { HeaderService } from 'src/app/core/header/header.service';
 })
 export class LoginComponent implements OnInit {
   loginForm = this._fb.group({
-    email: ['', Validators.required, Validators.email],
+    email: ['', Validators.required],
     password: ['', Validators.required]
   });
 

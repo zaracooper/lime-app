@@ -1,6 +1,6 @@
 import { LineItem } from "./line-item";
 
-export interface Order {
+interface Order {
     id?: string;
     number?: number;
     skusCount?: number;
@@ -16,9 +16,11 @@ export interface Order {
     customerEmail?: string;
     billingAddressId?: string;
     shippingAddressId?: string;
+    billingAddressCloneId?: string;
+    shippingAddressCloneId?: string;
 }
 
-export enum GetOrderParams {
+enum GetOrderParams {
     cart = 'forCart',
     availablePaymentMethods = 'withAvailablePaymentMethods',
     paymentSource = 'withpaymentSource',
@@ -26,7 +28,7 @@ export enum GetOrderParams {
     none = 'none'
 }
 
-export enum UpdateOrderParams {
+enum UpdateOrderParams {
     customerEmail = "customerEmail",
     billingAddress = "billingAddress",
     billingAddressClone = "billingAddressClone",
@@ -40,3 +42,5 @@ export enum UpdateOrderParams {
     couponCode = "couponCode",
     place = "place"
 }
+
+export { Order, GetOrderParams, UpdateOrderParams };

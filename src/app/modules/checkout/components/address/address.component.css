@@ -9,6 +9,10 @@ mat-checkbox {
     justify-content: center;
 }
 
+#submit-button {
+    margin-bottom: 2rem;
+}
+
 @media only screen and (min-width: 600px) {
     .row {
         flex-direction: row;

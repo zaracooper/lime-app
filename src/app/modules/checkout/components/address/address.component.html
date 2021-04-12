@@ -40,5 +40,7 @@
     <mat-checkbox color="accent" (change)="setCheckboxValue($event)">
         {{checkboxText}}
     </mat-checkbox>
-    <button mat-flat-button color="primary" [disabled]="!addressForm.valid || !countryCode.length" (click)="addAddress()">{{buttonText}}</button>
+    <button id="submit-button" mat-flat-button color="primary" (click)="addAddress()">
+        {{buttonText}}
+    </button>
 </form>
