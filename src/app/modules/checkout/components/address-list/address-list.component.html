@@ -1,0 +1,18 @@
+<div id="container">
+    <p class="mat-headline">Pick an existing address</p>
+    <mat-error *ngIf="!addresses.length">You have no existing addresses</mat-error>
+    <mat-radio-group *ngIf="addresses.length" class="addresses" change="setAddress($event)">
+        <mat-card class="address" *ngFor="let address of addresses">
+            <mat-radio-button [value]="address.id" color="primary">
+                <!-- <p>Lime Pink,</p>
+                <p>The Red Brand Inc.,</p>
+                <p>2883 Geraldine Lane,</p>
+                <p>New York,</p>
+                <p> 10013,</p>
+                <p>NY, US</p>
+                <p>(212) 646-338-1228</p> -->
+                {{address.name}}
+            </mat-radio-button>
+        </mat-card>
+    </mat-radio-group>
+</div>

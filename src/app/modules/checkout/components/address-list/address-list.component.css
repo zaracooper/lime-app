@@ -1,0 +1,24 @@
+.addresses {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.address {
+    margin: 10px;
+}
+
+mat-radio-button p {
+    margin-bottom: 3px;
+}
+
+mat-card {
+    border: 1px solid lightgray !important;
+}
+
+@media only screen and (min-width: 600px) {
+    .addresses {
+        max-width: 70vw;
+    }
+}
