@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { UntilDestroy } from '@ngneat/until-destroy';
 import { of } from 'rxjs';
-import { mergeMap } from 'rxjs/operators';
+import { first, mergeMap } from 'rxjs/operators';
 import { SessionService } from 'src/app/core/authentication/session.service';
 import { Address } from 'src/app/data/schema/address';
 import { CustomerAddress } from 'src/app/data/schema/customer-address';
@@ -33,21 +33,13 @@ export class BillingAddressComponent implements OnInit {
 
   ngOnInit() {
     this._session.loggedInStatus
+      .pipe(first())
       .subscribe(
         status => this.showAddresses = status
       );
   }
 
-  addAddress(address: Address) {
-    if (this.showAddresses) {
-
-    }
-    else {
-
-    }
-  }
-
-  private createAddress(address: Address) {
+  createAddress(address: Address) {
     this._addresses.createAddress(address)
       .pipe(
         mergeMap(address => {
@@ -72,5 +64,9 @@ export class BillingAddressComponent implements OnInit {
   }
 
   private updateOrderObservable() {
+  }
+
+  setSameShippingOrBillingAddress(change: boolean) {
+    this.sameShippingOrBillingAddress = change;
   }
 }
