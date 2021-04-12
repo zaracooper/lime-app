@@ -31,11 +31,16 @@ export class OrderService {
       .pipe(catchError(this._eh.handleError));
   }
 
-  updateOrder(order: Order, param: UpdateOrderParams): Observable<Order> {
+  updateOrder(order: Order, params: UpdateOrderParams[]): Observable<Order> {
+    let updateParams = [];
+    for (const param of params) {
+      updateParams.push(param.toString());
+    }
+
     return this._http.patch<Order>(
       `${this.url}/${order.id}`,
       order,
-      { params: { 'field': param.toString() } }
+      { params: { 'field': updateParams } }
     )
       .pipe(catchError(this._eh.handleError));
   }
