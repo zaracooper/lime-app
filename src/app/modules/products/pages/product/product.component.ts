@@ -53,42 +53,46 @@ export class ProductComponent implements OnInit {
   }
 
   addItemToCart() {
-    if (this._cart.orderId == '') {
-      this._orders.createOrder()
-        .pipe(
-          mergeMap((order: Order) => {
-            this._cart.orderId = order.id || '';
+    if (this.quantity > 0) {
+      if (this._cart.orderId == '') {
+        this._orders.createOrder()
+          .pipe(
+            mergeMap((order: Order) => {
+              this._cart.orderId = order.id || '';
 
-            return this._lineItems.createLineItem({
-              orderId: order.id,
-              name: this.product.name,
-              imageUrl: this.product.imageUrl,
-              quantity: this.quantity,
-              skuCode: this.product.code
-            });
-          })
-        )
-        .subscribe(
+              return this._lineItems.createLineItem({
+                orderId: order.id,
+                name: this.product.name,
+                imageUrl: this.product.imageUrl,
+                quantity: this.quantity,
+                skuCode: this.product.code
+              });
+            })
+          )
+          .subscribe(
+            () => {
+              this._cart.incrementItemCount(this.quantity);
+              this.showSuccessSnackBar();
+            },
+            err => this.showErrorSnackBar()
+          );
+      } else {
+        this._lineItems.createLineItem({
+          orderId: this._cart.orderId,
+          name: this.product.name,
+          imageUrl: this.product.imageUrl,
+          quantity: this.quantity,
+          skuCode: this.product.code
+        }).subscribe(
           () => {
             this._cart.incrementItemCount(this.quantity);
             this.showSuccessSnackBar();
           },
           err => this.showErrorSnackBar()
         );
+      }
     } else {
-      this._lineItems.createLineItem({
-        orderId: this._cart.orderId,
-        name: this.product.name,
-        imageUrl: this.product.imageUrl,
-        quantity: this.quantity,
-        skuCode: this.product.code
-      }).subscribe(
-        () => {
-          this._cart.incrementItemCount(this.quantity);
-          this.showSuccessSnackBar();
-        },
-        err => this.showErrorSnackBar()
-      );
+      this._snackBar.open('Select a quantity greater than 0.', 'Close', { duration: 8000 });
     }
   }
 
