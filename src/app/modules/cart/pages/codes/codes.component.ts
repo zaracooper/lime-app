@@ -24,7 +24,7 @@ export class CodesComponent {
     private _snackBar: MatSnackBar
   ) { }
 
-  private updateOrder(order: Order, params: UpdateOrderParams, codeType: string) {
+  private updateOrder(order: Order, params: UpdateOrderParams[], codeType: string) {
     this._order.updateOrder(order, params)
       .subscribe(
         () => {
@@ -38,11 +38,11 @@ export class CodesComponent {
   }
 
   addCoupon() {
-    this.updateOrder({ id: this._cart.orderId, couponCode: this.couponCode.value }, UpdateOrderParams.couponCode, 'coupon');
+    this.updateOrder({ id: this._cart.orderId, couponCode: this.couponCode.value }, [UpdateOrderParams.couponCode], 'coupon');
   }
 
   addGiftCard() {
-    this.updateOrder({ id: this._cart.orderId, giftCardCode: this.giftCardCode.value }, UpdateOrderParams.giftCardCode, 'gift card');
+    this.updateOrder({ id: this._cart.orderId, giftCardCode: this.giftCardCode.value }, [UpdateOrderParams.giftCardCode], 'gift card');
   }
 
 }

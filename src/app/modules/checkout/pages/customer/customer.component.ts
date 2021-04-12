@@ -35,7 +35,7 @@ export class CustomerComponent implements OnInit {
   addCustomerEmail() {
     this._orders.updateOrder(
       { id: this._cart.orderId, customerEmail: this.email.value },
-      UpdateOrderParams.customerEmail)
+      [UpdateOrderParams.customerEmail])
       .subscribe(
         () => this._router.navigateByUrl('/billing-address'),
         err => this._snackBar.open('There was a problem adding your email to the order.', 'Close', { duration: 8000 })
