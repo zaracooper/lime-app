@@ -8,6 +8,7 @@ h1 {
     align-items: center;
     justify-content: center;
     margin-bottom: 3em;
+    margin-left: 15px;
 }
 
 #subheading {
@@ -33,4 +34,10 @@ h1 {
     flex-direction: column;
     align-items: center;
     text-align: center;
+}
+
+@media only screen and (min-width: 350px) {
+    #header {
+        margin-left: 0;
+    }
 }
