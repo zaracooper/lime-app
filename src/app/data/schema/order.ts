@@ -1,10 +1,12 @@
 import { LineItem } from "./line-item";
+import { Shipment } from "./shipment";
 
 interface Order {
     id?: string;
     number?: number;
     skusCount?: number;
     lineItems?: LineItem[];
+    shipments?: Shipment[];
     formattedSubtotalAmount?: string;
     formattedDiscountAmount?: string;
     formattedShippingAmount?: string;
@@ -25,6 +27,7 @@ enum GetOrderParams {
     availablePaymentMethods = 'withAvailablePaymentMethods',
     paymentSource = 'withpaymentSource',
     paymentMethod = 'withpaymentMethod',
+    shipments = 'withShipments',
     none = 'none'
 }
 
