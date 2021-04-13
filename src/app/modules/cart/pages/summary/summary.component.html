@@ -1,42 +1,44 @@
-<h3 id="order-id">Order #{{order.number}} ({{order.skusCount}} items)</h3>
-<div class="line-item" *ngFor="let item of order.lineItems">
-    <div id="product-details">
-        <img *ngIf="item.imageUrl" class="image-xs" src="{{item.imageUrl}}" alt="product photo">
-        <div *ngIf="!item.imageUrl" class="image-xs no-image"></div>
-        <div id="line-details">
-            <div>{{item.name}}</div>
-            <div> {{item.formattedUnitAmount }} </div>
+<div class="container" *ngIf="order">
+    <h3 id="order-id">Order #{{order.number}} ({{order.skusCount}} items)</h3>
+    <div class="line-item" *ngFor="let item of order.lineItems">
+        <div id="product-details">
+            <img *ngIf="item.imageUrl" class="image-xs" src="{{item.imageUrl}}" alt="product photo">
+            <div *ngIf="!item.imageUrl" class="image-xs no-image"></div>
+            <div id="line-details">
+                <div>{{item.name}}</div>
+                <div> {{item.formattedUnitAmount }} </div>
+            </div>
         </div>
-    </div>
-    <div id="product-config">
-        <app-item-quantity [quantity]="item.quantity || 0" [disabled]="true"></app-item-quantity>
-        <div class="itemTotal"> {{item.formattedTotalAmount }} </div>
-        <button mat-icon-button color="warn" (click)="deleteLineItem(item.id || '')">
+        <div id="product-config">
+            <app-item-quantity [quantity]="item.quantity || 0" [disabled]="true"></app-item-quantity>
+            <div class="itemTotal"> {{item.formattedTotalAmount }} </div>
+            <button mat-icon-button color="warn" (click)="deleteLineItem(item.id || '')">
                 <mat-icon>clear</mat-icon>
         </button>
+        </div>
     </div>
-</div>
-<mat-divider></mat-divider>
-<div class="costSummary">
-    <div class="costItem" *ngFor="let item of summary" [id]="item.id">
-        <h3 class="costLabel">{{item.name}}</h3>
-        <p> {{item.amount }} </p>
+    <mat-divider></mat-divider>
+    <div class="costSummary">
+        <div class="costItem" *ngFor="let item of summary" [id]="item.id">
+            <h3 class="costLabel">{{item.name}}</h3>
+            <p> {{item.amount }} </p>
+        </div>
     </div>
-</div>
-<mat-divider></mat-divider>
-<div class="costSummary">
-    <div class="costItem" id="total">
-        <h2 id="totalLabel">Total</h2>
-        <h2> {{order.formattedTotalAmountWithTaxes}} </h2>
+    <mat-divider></mat-divider>
+    <div class="costSummary">
+        <div class="costItem" id="total">
+            <h2 id="totalLabel">Total</h2>
+            <h2> {{order.formattedTotalAmountWithTaxes}} </h2>
+        </div>
     </div>
-</div>
-<div id="checkout-button">
-    <button color="accent" mat-flat-button routerLink="/codes">
+    <div id="checkout-button">
+        <button color="accent" mat-flat-button routerLink="/codes">
         <mat-icon>redeem</mat-icon>
         ADD GIFT CARD/COUPON
     </button>
-    <button color="primary" mat-flat-button (click)="checkout()">
+        <button color="primary" mat-flat-button (click)="checkout()">
         <mat-icon>point_of_sale</mat-icon>
         CHECKOUT
     </button>
+    </div>
 </div>

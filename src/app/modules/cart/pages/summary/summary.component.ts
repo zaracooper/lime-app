@@ -3,7 +3,6 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { UntilDestroy } from '@ngneat/until-destroy';
 import { mergeMap } from 'rxjs/operators';
-import { SessionService } from 'src/app/core/authentication/session.service';
 import { GetOrderParams, Order } from 'src/app/data/schema/order';
 import { CartService } from 'src/app/data/services/cart.service';
 import { LineItemService } from 'src/app/data/services/line-item.service';
@@ -49,7 +48,7 @@ export class SummaryComponent implements OnInit {
   }
 
   private showOrderError(msg: string) {
-    this._snackBar.open(`There was a problem ${msg}.`, 'Close', { duration: 8000 })
+    this._snackBar.open(`There was a problem ${msg}.`, 'Close', { duration: 8000 });
   }
 
   checkout() {
