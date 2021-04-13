@@ -1,46 +1,33 @@
-<div id="container">
+<form id="container" [formGroup]="shipmentsForm">
     <app-title no="4" title="Shipping Methods" subtitle="How to ship your packages"></app-title>
-    <div *ngFor="let j of [1, 2, 3]; let isLast = last">
-        <h1>Shipment {{j}} of 3</h1>
-        <div class="row" *ngFor="let i of [1, 2, 3, 4]">
-            <img class="image-xs" src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+    <div class="shipment-container" *ngFor="let shipment of shipments; let j = index; let isLast = last">
+        <h1>Shipment {{j+1}} of {{shipments?.length}}</h1>
+        <div class="row" *ngFor="let item of shipment.lineItems">
+            <img class="image-xs" [src]="item.imageUrl" alt="product photo">
             <div id="shipment-details">
-                <h4>Item Name</h4>
-                <p>Item Code</p>
+                <h4 id="item-name">{{item.name}}</h4>
+                <p>{{item.skuCode}}</p>
             </div>
             <div id="quantity-section">
-                <p id="quantity-label">Quantity: </p>2
+                <p id="quantity-label">Quantity: </p>{{item.quantity}}
             </div>
         </div>
-        <mat-radio-group>
-            <mat-radio-button value="1">
+        <mat-radio-group [formControlName]="shipment?.id || j">
+            <mat-radio-button *ngFor="let method of shipment.availableShippingMethods" [value]="method.id">
                 <div class="radio-button">
-                    <p>Standard Shipping</p>
+                    <p>{{method.name}}</p>
                     <div>
                         <p class="radio-label">Cost:</p>
-                        <p>&nbsp;$7.00</p>
+                        <p>&nbsp;{{method.formattedPriceAmount}}</p>
                     </div>
                     <div>
                         <p class="radio-label">Timeline:</p>
-                        <p>&nbsp;Available in 3-5 days</p>
-                    </div>
-                </div>
-            </mat-radio-button>
-            <mat-radio-button value="2">
-                <div class="radio-button">
-                    <p>Express Shipping</p>
-                    <div>
-                        <p class="radio-label">Cost:</p>
-                        <p>&nbsp;$15.00</p>
-                    </div>
-                    <div>
-                        <p class="radio-label">Timeline:</p>
-                        <p>&nbsp;Available in 2-3 days</p>
+                        <p>&nbsp;Available in {{method.deliveryLeadTime?.minDays}}-{{method.deliveryLeadTime?.maxDays}} days</p>
                     </div>
                 </div>
             </mat-radio-button>
         </mat-radio-group>
         <mat-divider *ngIf="!isLast"></mat-divider>
     </div>
-    <button mat-flat-button color="primary">PROCEED TO PAYMENT</button>
-</div>
+    <button mat-flat-button color="primary" [disabled]="shipmentsForm.invalid" (click)="setShipmentMethods()">PROCEED TO PAYMENT</button>
+</form>

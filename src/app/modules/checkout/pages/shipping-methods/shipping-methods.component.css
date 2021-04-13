@@ -4,9 +4,19 @@
     margin-right: 1em;
 }
 
+app-title {
+    margin: auto;
+}
+
+.shipment-container {
+    width: 80vw;
+    display: flex;
+    flex-direction: column;
+}
+
 .row {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     margin-bottom: 1em;
 }
 
@@ -19,6 +29,10 @@
 #shipment-details h4 {
     margin: 0;
     font-weight: 500;
+}
+
+#shipment-details p {
+    margin: 0;
 }
 
 #quantity-section {
@@ -49,7 +63,7 @@ mat-radio-button p {
 }
 
 mat-radio-button {
-    margin-top: 5px;
+    margin: 5px;
 }
 
 .radio-button div {
@@ -60,7 +74,20 @@ button {
     margin: 5em 0;
 }
 
+#item-name {
+    word-wrap: break-word;
+    white-space: pre-wrap;
+    margin-right: 10px;
+}
+
 @media only screen and (min-width: 600px) {
+    .row {
+        flex-direction: row;
+    }
+    .shipment-container {
+        width: 80vw;
+        align-items: center;
+    }
     .radio-button {
         display: flex;
         flex-direction: row;
@@ -71,5 +98,18 @@ button {
     mat-radio-group {
         display: flex;
         flex-direction: column;
+    }
+    mat-divider {
+        width: 35vw;
+    }
+    .image-xs {
+        flex: 1;
+    }
+    #shipment-details {
+        flex: 4;
+    }
+    #quantity-section {
+        flex: 2;
+        margin-left: 4rem;
     }
 }
