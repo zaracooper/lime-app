@@ -19,10 +19,10 @@ export class ShipmentService {
       .pipe(catchError(this.eh.handleError));
   }
 
-  updateShipment(id: string, shippingMethod: string): Observable<Shipment> {
+  updateShipment(id: string, shippingMethodId: string): Observable<Shipment> {
     return this.http.patch<Shipment>(
       `${this.url}/${id}`,
-      { shippingMethod: shippingMethod }
+      { shippingMethodId: shippingMethodId }
     )
       .pipe(catchError(this.eh.handleError));
   }
