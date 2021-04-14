@@ -12,7 +12,6 @@ export class SimplePageComponent {
   @Input() number?: string;
   @Input() icon?: string;
   @Input() buttonText: string = '';
-  @Input() buttonLink?: string = '/';
   @Input() centerText?: boolean = false;
   @Input() buttonDisabled?: boolean = false;
   @Output() buttonEvent = new EventEmitter();

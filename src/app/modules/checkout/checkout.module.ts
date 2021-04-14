@@ -21,6 +21,7 @@ import { ShippingMethodsComponent } from './pages/shipping-methods/shipping-meth
 import { EmptyCartGuard } from 'src/app/core/guards/empty-cart.guard';
 import { AddressListComponent } from './components/address-list/address-list.component';
 import { CountrySelectComponent } from './components/country-select/country-select.component';
+import { CancelPaymentComponent } from './pages/cancel-payment/cancel-payment.component';
 
 @NgModule({
   declarations: [
@@ -32,13 +33,15 @@ import { CountrySelectComponent } from './components/country-select/country-sele
     PaymentComponent,
     PlaceOrderComponent,
     AddressListComponent,
-    CountrySelectComponent
+    CountrySelectComponent,
+    CancelPaymentComponent
   ],
   imports: [
     RouterModule.forChild([
       {
         path: '', canActivate: [EmptyCartGuard], children: [
           { path: 'billing-address', component: BillingAddressComponent },
+          { path: 'cancel-payment', component: CancelPaymentComponent },
           { path: 'customer', component: CustomerComponent },
           { path: 'payment', component: PaymentComponent },
           { path: 'place-order', component: PlaceOrderComponent },
