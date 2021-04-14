@@ -3,10 +3,10 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { UntilDestroy } from '@ngneat/until-destroy';
-import { combineLatest, Observable } from 'rxjs';
+import { combineLatest } from 'rxjs';
 import { DeliveryLeadTime } from 'src/app/data/schema/delivery-lead-time';
 import { LineItem } from 'src/app/data/schema/line-item';
-import { GetOrderParams, Order } from 'src/app/data/schema/order';
+import { GetOrderParams } from 'src/app/data/schema/order';
 import { Shipment } from 'src/app/data/schema/shipment';
 import { ShippingMethod } from 'src/app/data/schema/shipping-method';
 import { CartService } from 'src/app/data/services/cart.service';

@@ -3,7 +3,7 @@
     <div *ngIf="icon" id="icon-container">
         <mat-icon color="primary" class="icon">{{icon}}</mat-icon>
     </div>
-    <button mat-flat-button color="primary" routerLink="{{buttonLink}}">
+    <button mat-flat-button color="primary" (click)="buttonClicked()" [disabled]="buttonDisabled">
         {{buttonText}}
     </button>
 </div>

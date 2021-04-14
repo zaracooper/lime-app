@@ -1,4 +1,6 @@
 import { LineItem } from "./line-item";
+import { PaymentMethod } from "./payment-method";
+import { PaymentSource } from "./payment-source";
 import { Shipment } from "./shipment";
 
 interface Order {
@@ -20,13 +22,17 @@ interface Order {
     shippingAddressId?: string;
     billingAddressCloneId?: string;
     shippingAddressCloneId?: string;
+    availablePaymentMethods?: PaymentMethod[];
+    paymentMethodId?: string;
+    paymentSource?: PaymentSource;
+    place?: boolean;
 }
 
 enum GetOrderParams {
     cart = 'forCart',
     availablePaymentMethods = 'withAvailablePaymentMethods',
-    paymentSource = 'withpaymentSource',
-    paymentMethod = 'withpaymentMethod',
+    paymentSource = 'withPaymentSource',
+    paymentMethod = 'withPaymentMethod',
     shipments = 'withShipments',
     none = 'none'
 }

@@ -1,1 +1,1 @@
-<app-simple-page title="Finalize Order" subtitle="Complete your order" [number]="'6'" icon="shopping_bag" buttonText="PLACE YOUR ORDER"></app-simple-page>
+<app-simple-page title="Finalize Order" subtitle="Complete your order" [number]="'6'" icon="shopping_bag" buttonText="PLACE YOUR ORDER" (buttonEvent)="placeOrder()" [buttonDisabled]="disableButton"></app-simple-page>

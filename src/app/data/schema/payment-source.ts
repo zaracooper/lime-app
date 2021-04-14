@@ -1,12 +1,11 @@
-export interface PaypalPayment {
+export interface PaymentSource {
     approvalUrl?: string;
-    id?: string;
-    orderId?: string;
     cancelUrl?: string;
-    returnUrl?: string;
+    id?: string;
     name?: string;
     noteToPayer?: string;
     paypalId?: string;
     paypalPayerId?: string;
+    returnUrl?: string;
     status?: string;
 }
