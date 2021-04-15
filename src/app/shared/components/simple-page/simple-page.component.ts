@@ -14,15 +14,16 @@ export class SimplePageComponent {
   @Input() buttonText: string = '';
   @Input() centerText?: boolean = false;
   @Input() buttonDisabled?: boolean = false;
+  @Input() route?: string | undefined;
   @Output() buttonEvent = new EventEmitter();
 
   constructor(private _router: Router) { }
 
   buttonClicked() {
-    if (this.buttonEvent) {
-      this.buttonEvent.emit();
-    } else {
+    if (this.route) {
       this._router.navigateByUrl('/');
+    } else {
+      this.buttonEvent.emit();
     }
   }
 
