@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UntilDestroy } from '@ngneat/until-destroy';
@@ -25,6 +26,7 @@ export class ProductComponent implements OnInit {
   constructor(
     private _route: ActivatedRoute,
     private _skus: SkuService,
+    private _location: Location,
     private _router: Router,
     private _header: HeaderService,
     private _orders: OrderService,
@@ -98,6 +100,10 @@ export class ProductComponent implements OnInit {
 
   setQuantity(no: number) {
     this.quantity = no;
+  }
+
+  goBack() {
+    this._location.back();
   }
 
   private showSuccessSnackBar() {

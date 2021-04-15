@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 import { UntilDestroy } from '@ngneat/until-destroy';
 import { AuthenticationService } from 'src/app/core/authentication/authentication.service';
 import { SessionService } from 'src/app/core/authentication/session.service';
@@ -22,10 +22,10 @@ export class LoginComponent implements OnInit {
   constructor(
     private _authService: AuthenticationService,
     private _session: SessionService,
-    private _router: Router,
     private _snackBar: MatSnackBar,
     private _fb: FormBuilder,
-    private _header: HeaderService
+    private _header: HeaderService,
+    private _location: Location
   ) { }
 
   ngOnInit() {
@@ -41,7 +41,7 @@ export class LoginComponent implements OnInit {
     ).subscribe(
       () => {
         this._session.setLoggedInStatus(true);
-        this._router.navigateByUrl('/');
+        this._location.back();
       },
       err => {
         this._snackBar.open(
