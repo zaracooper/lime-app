@@ -1,7 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { UntilDestroy } from '@ngneat/until-destroy';
+import { concat } from 'rxjs';
 import { CartService } from 'src/app/data/services/cart.service';
+import { AuthenticationService } from '../authentication/authentication.service';
 import { SessionService } from '../authentication/session.service';
 import { HeaderService } from './header.service';
 
@@ -21,7 +23,8 @@ export class HeaderComponent implements OnInit {
     private _session: SessionService,
     private _snackBar: MatSnackBar,
     private _cart: CartService,
-    private _header: HeaderService
+    private _header: HeaderService,
+    private _auth: AuthenticationService
   ) { }
 
   ngOnInit() {
@@ -41,13 +44,15 @@ export class HeaderComponent implements OnInit {
   }
 
   logout() {
-    this._session.logout()
-      .subscribe(
-        () => {
-          this._snackBar.open('You have been logged out.', 'Close', { duration: 4000 });
-          this._session.setLoggedInStatus(false);
-        },
-        err => this._snackBar.open('There was a problem logging you out.', 'Close', { duration: 4000 })
-      );
+    concat(
+      this._session.logout(),
+      this._auth.getClientSession()
+    ).subscribe(
+      () => {
+        this._snackBar.open('You have been logged out.', 'Close', { duration: 4000 });
+        this._session.setLoggedInStatus(false);
+      },
+      err => this._snackBar.open('There was a problem logging you out.', 'Close', { duration: 4000 })
+    );
   }
 }
