@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { UntilDestroy } from '@ngneat/until-destroy';
-import { combineLatest, Observable } from 'rxjs';
+import { combineLatest, concat, iif, Observable } from 'rxjs';
 import { concatMap } from 'rxjs/operators';
 import { SessionService } from 'src/app/core/authentication/session.service';
 import { Address } from 'src/app/data/schema/address';
@@ -91,12 +91,14 @@ export class ShippingAddressComponent implements OnInit {
       );
   }
 
-  private updateOrderObservable(order: Order, updateParams: UpdateOrderParams[]): Observable<Order> {
-    if (this.sameBillingAddressAsShipping) {
-      updateParams.push(UpdateOrderParams.billingAddressSameAsShipping);
-    }
-
-    return this._orders.updateOrder(order, updateParams);
+  private updateOrderObservable(order: Order, updateParams: UpdateOrderParams[]): Observable<any> {
+    return iif(() => this.sameBillingAddressAsShipping,
+      concat([
+        this._orders.updateOrder(order, updateParams),
+        this._orders.updateOrder(order, [UpdateOrderParams.billingAddressSameAsShipping])
+      ]),
+      this._orders.updateOrder(order, updateParams)
+    );
   }
 
   private showErrorSnackBar() {
