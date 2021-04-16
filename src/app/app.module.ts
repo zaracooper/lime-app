@@ -6,7 +6,7 @@ import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { OptionsInterceptor } from './core/interceptor/options.interceptor';
+import { OptionsInterceptor } from './core/interceptors/options.interceptor';
 import { environment } from 'src/environments/environment';
 
 import { CoreModule } from './core/core.module';
