@@ -14,11 +14,10 @@ export class EmptyCartGuard implements CanActivate {
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     if (this._cart.orderId) {
       if (this._cart.itemCount > 0) {
-        return true
+        return true;
       }
     }
 
     return this._router.parseUrl('/empty');
   }
-
 }

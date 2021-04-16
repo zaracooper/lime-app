@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
-import { HttpErrorHandler } from '../../shared/services/http-error-handler.service';
+import { HttpErrorHandler } from 'src/app/shared/services/http-error-handler.service';
 
 @Injectable({
   providedIn: 'root'
