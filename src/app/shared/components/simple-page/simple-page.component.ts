@@ -21,10 +21,9 @@ export class SimplePageComponent {
 
   buttonClicked() {
     if (this.route) {
-      this._router.navigateByUrl('/');
+      this._router.navigateByUrl(this.route);
     } else {
       this.buttonEvent.emit();
     }
   }
-
 }

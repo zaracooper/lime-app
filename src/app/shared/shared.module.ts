@@ -8,11 +8,11 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
-import { SimplePageComponent } from './components/simple-page/simple-page.component';
+import { ItemQuantityComponent } from './components/item-quantity/item-quantity.component';
 import { TitleComponent } from './components/title/title.component';
+import { SimplePageComponent } from './components/simple-page/simple-page.component';
 
 import { WordWrapPipe } from './pipes/word-wrap.pipe';
-import { ItemQuantityComponent } from './components/item-quantity/item-quantity.component';
 
 
 @NgModule({

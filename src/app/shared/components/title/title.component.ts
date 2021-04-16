@@ -10,5 +10,4 @@ export class TitleComponent {
   @Input() subtitle: string = '';
   @Input() no?: string;
   @Input() centerText?: boolean = false;
-
 }
