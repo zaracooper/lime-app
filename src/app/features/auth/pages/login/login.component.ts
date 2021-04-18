@@ -5,7 +5,7 @@ import { Location } from '@angular/common';
 import { UntilDestroy } from '@ngneat/until-destroy';
 import { AuthenticationService } from 'src/app/core/authentication/authentication.service';
 import { SessionService } from 'src/app/core/authentication/session.service';
-import { HeaderService } from 'src/app/core/header/header.service';
+import { HeaderService } from 'src/app/core/components/header/header.service';
 
 @UntilDestroy({ checkProperties: true })
 @Component({

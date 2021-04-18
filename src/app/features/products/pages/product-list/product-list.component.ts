@@ -7,7 +7,7 @@ import { SkuService } from 'src/app/data/services/sku.service';
 import { Sku } from 'src/app/data/models/sku';
 import { PageEvent } from '@angular/material/paginator';
 import { Router } from '@angular/router';
-import { HeaderService } from 'src/app/core/header/header.service';
+import { HeaderService } from 'src/app/core/components/header/header.service';
 
 @UntilDestroy({ checkProperties: true })
 @Component({

@@ -4,7 +4,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UntilDestroy } from '@ngneat/until-destroy';
 import { map, mergeMap } from 'rxjs/operators';
-import { HeaderService } from 'src/app/core/header/header.service';
+import { HeaderService } from 'src/app/core/components/header/header.service';
 import { Order } from 'src/app/data/models/order';
 import { Sku } from 'src/app/data/models/sku';
 import { CartService } from 'src/app/data/services/cart.service';

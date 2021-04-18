@@ -3,7 +3,7 @@ import { AbstractControl, FormBuilder, FormGroupDirective, ValidationErrors, Val
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { UntilDestroy } from '@ngneat/until-destroy';
-import { HeaderService } from 'src/app/core/header/header.service';
+import { HeaderService } from 'src/app/core/components/header/header.service';
 import { CustomerService } from 'src/app/data/services/customer.service';
 
 @UntilDestroy({ checkProperties: true })
