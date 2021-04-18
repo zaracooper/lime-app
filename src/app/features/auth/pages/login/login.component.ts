@@ -3,9 +3,9 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Location } from '@angular/common';
 import { UntilDestroy } from '@ngneat/until-destroy';
-import { AuthenticationService } from 'src/app/core/authentication/authentication.service';
-import { SessionService } from 'src/app/core/authentication/session.service';
-import { HeaderService } from 'src/app/core/components/header/header.service';
+import { AuthenticationService } from 'src/app/core/services/authentication.service';
+import { SessionService } from 'src/app/core/services/session.service';
+import { HeaderService } from 'src/app/core/services/header.service';
 
 @UntilDestroy({ checkProperties: true })
 @Component({

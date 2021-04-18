@@ -5,7 +5,7 @@ import { UntilDestroy } from '@ngneat/until-destroy';
 import { iif } from 'rxjs';
 import { combineLatest, concat, Observable } from 'rxjs';
 import { concatMap } from 'rxjs/operators';
-import { SessionService } from 'src/app/core/authentication/session.service';
+import { SessionService } from 'src/app/core/services/session.service';
 import { Address } from 'src/app/data/models/address';
 import { Order, UpdateOrderParams } from 'src/app/data/models/order';
 import { AddressService } from 'src/app/data/services/address.service';

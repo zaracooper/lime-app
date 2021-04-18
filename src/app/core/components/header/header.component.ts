@@ -3,9 +3,9 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { UntilDestroy } from '@ngneat/until-destroy';
 import { concat } from 'rxjs';
 import { CartService } from 'src/app/data/services/cart.service';
-import { AuthenticationService } from '../../authentication/authentication.service';
-import { SessionService } from '../../authentication/session.service';
-import { HeaderService } from './header.service';
+import { AuthenticationService } from '../../services/authentication.service';
+import { SessionService } from '../../services/session.service';
+import { HeaderService } from '../../services/header.service';
 
 @UntilDestroy({ checkProperties: true })
 @Component({

@@ -3,7 +3,7 @@ import { MatRadioChange } from '@angular/material/radio';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { iif } from 'rxjs';
 import { mergeMap } from 'rxjs/operators';
-import { SessionService } from 'src/app/core/authentication/session.service';
+import { SessionService } from 'src/app/core/services/session.service';
 import { CustomerAddress } from 'src/app/data/models/customer-address';
 import { CustomerAddressService } from 'src/app/data/services/customer-address.service';
 
