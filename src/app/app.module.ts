@@ -11,10 +11,10 @@ import { environment } from 'src/environments/environment';
 
 import { CoreModule } from './core/core.module';
 
-import { AuthModule } from './modules/auth/auth.module';
-import { ProductsModule } from './modules/products/products.module';
-import { CartModule } from './modules/cart/cart.module';
-import { CheckoutModule } from './modules/checkout/checkout.module';
+import { AuthModule } from './features/auth/auth.module';
+import { ProductsModule } from './features/products/products.module';
+import { CartModule } from './features/cart/cart.module';
+import { CheckoutModule } from './features/checkout/checkout.module';
 
 @NgModule({
   declarations: [
