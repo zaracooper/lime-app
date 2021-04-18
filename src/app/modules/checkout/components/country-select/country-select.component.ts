@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { UntilDestroy } from '@ngneat/until-destroy';
-import { Country } from 'src/app/data/schema/country';
+import { Country } from 'src/app/data/models/country';
 import { CountryService } from 'src/app/data/services/country.service';
 
 @UntilDestroy({ checkProperties: true })

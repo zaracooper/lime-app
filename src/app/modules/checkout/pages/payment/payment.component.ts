@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { UntilDestroy } from '@ngneat/until-destroy';
 import { iif } from 'rxjs';
 import { concatMap } from 'rxjs/operators';
-import { GetOrderParams, Order, UpdateOrderParams } from 'src/app/data/schema/order';
+import { GetOrderParams, Order, UpdateOrderParams } from 'src/app/data/models/order';
 import { CartService } from 'src/app/data/services/cart.service';
 import { OrderService } from 'src/app/data/services/order.service';
 import { PaypalPaymentService } from 'src/app/data/services/paypal-payment.service';

@@ -3,7 +3,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { UntilDestroy } from '@ngneat/until-destroy';
 import { mergeMap } from 'rxjs/operators';
-import { GetOrderParams, Order } from 'src/app/data/schema/order';
+import { GetOrderParams, Order } from 'src/app/data/models/order';
 import { CartService } from 'src/app/data/services/cart.service';
 import { LineItemService } from 'src/app/data/services/line-item.service';
 import { OrderService } from 'src/app/data/services/order.service';

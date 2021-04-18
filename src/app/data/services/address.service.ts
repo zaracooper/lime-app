@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { HttpErrorHandler } from 'src/app/shared/services/http-error-handler.service';
 import { environment } from 'src/environments/environment';
-import { Address } from '../schema/address';
+import { Address } from '../models/address';
 
 @Injectable({
   providedIn: 'root'

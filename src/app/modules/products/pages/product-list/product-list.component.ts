@@ -4,7 +4,7 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { UntilDestroy } from '@ngneat/until-destroy';
 
 import { SkuService } from 'src/app/data/services/sku.service';
-import { Sku } from 'src/app/data/schema/sku';
+import { Sku } from 'src/app/data/models/sku';
 import { PageEvent } from '@angular/material/paginator';
 import { Router } from '@angular/router';
 import { HeaderService } from 'src/app/core/header/header.service';

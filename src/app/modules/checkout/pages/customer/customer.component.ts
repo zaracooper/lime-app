@@ -3,7 +3,7 @@ import { FormControl, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { UntilDestroy } from '@ngneat/until-destroy';
-import { UpdateOrderParams } from 'src/app/data/schema/order';
+import { UpdateOrderParams } from 'src/app/data/models/order';
 import { CartService } from 'src/app/data/services/cart.service';
 import { CustomerService } from 'src/app/data/services/customer.service';
 import { OrderService } from 'src/app/data/services/order.service';

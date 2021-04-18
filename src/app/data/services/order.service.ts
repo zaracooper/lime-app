@@ -4,8 +4,8 @@ import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { HttpErrorHandler } from 'src/app/shared/services/http-error-handler.service';
 import { environment } from 'src/environments/environment';
-import { Order, GetOrderParams, UpdateOrderParams } from '../schema/order';
-import { Shipment } from '../schema/shipment';
+import { Order, GetOrderParams, UpdateOrderParams } from '../models/order';
+import { Shipment } from '../models/shipment';
 
 @Injectable({
   providedIn: 'root'

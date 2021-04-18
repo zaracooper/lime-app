@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { HttpErrorHandler } from '../../shared/services/http-error-handler.service';
 import { environment } from 'src/environments/environment';
-import { Sku } from 'src/app/data/schema/sku';
+import { Sku } from 'src/app/data/models/sku';
 
 @Injectable({
   providedIn: 'root'

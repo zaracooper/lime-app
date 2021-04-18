@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroupDirective, Validators } from '@angular/forms';
 import { MatCheckboxChange } from '@angular/material/checkbox';
-import { Address } from 'src/app/data/schema/address';
+import { Address } from 'src/app/data/models/address';
 
 @Component({
   selector: 'app-address',

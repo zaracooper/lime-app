@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { HttpErrorHandler } from '../../shared/services/http-error-handler.service';
 import { environment } from 'src/environments/environment';
-import { DeliveryLeadTime } from '../schema/delivery-lead-time';
+import { DeliveryLeadTime } from '../models/delivery-lead-time';
 
 @Injectable({
   providedIn: 'root'

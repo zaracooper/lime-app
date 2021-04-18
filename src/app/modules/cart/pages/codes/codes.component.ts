@@ -2,7 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { FormControl, FormControlDirective } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { UntilDestroy } from '@ngneat/until-destroy';
-import { Order, UpdateOrderParams } from 'src/app/data/schema/order';
+import { Order, UpdateOrderParams } from 'src/app/data/models/order';
 import { CartService } from 'src/app/data/services/cart.service';
 import { OrderService } from 'src/app/data/services/order.service';
 
