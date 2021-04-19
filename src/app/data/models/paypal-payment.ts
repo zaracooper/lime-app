@@ -1,12 +1,7 @@
-export interface PaypalPayment {
-    approvalUrl?: string;
-    id?: string;
+import { PaymentSource } from "./payment-source";
+
+export interface PaypalPayment extends PaymentSource {
     orderId?: string;
-    cancelUrl?: string;
-    returnUrl?: string;
-    name?: string;
-    noteToPayer?: string;
     paypalId?: string;
     paypalPayerId?: string;
-    status?: string;
 }

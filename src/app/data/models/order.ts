@@ -1,6 +1,6 @@
 import { LineItem } from "./line-item";
 import { PaymentMethod } from "./payment-method";
-import { PaymentSource } from "./payment-source";
+import { PaypalPayment } from "./paypal-payment";
 import { Shipment } from "./shipment";
 
 interface Order {
@@ -24,7 +24,7 @@ interface Order {
     shippingAddressCloneId?: string;
     availablePaymentMethods?: PaymentMethod[];
     paymentMethodId?: string;
-    paymentSource?: PaymentSource;
+    paymentSource?: PaypalPayment;
     place?: boolean;
 }
 

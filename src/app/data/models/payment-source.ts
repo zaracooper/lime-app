@@ -4,8 +4,6 @@ export interface PaymentSource {
     id?: string;
     name?: string;
     noteToPayer?: string;
-    paypalId?: string;
-    paypalPayerId?: string;
     returnUrl?: string;
     status?: string;
 }
