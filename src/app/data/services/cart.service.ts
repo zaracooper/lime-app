@@ -6,6 +6,12 @@ import { LocalStorageService } from 'src/app/shared/services/local-storage.servi
   providedIn: 'root'
 })
 export class CartService {
+  private cart = new BehaviorSubject({
+    orderId: this.orderId,
+    itemCount: this.itemCount
+  });
+
+  cartValue = this.cart.asObservable();
 
   constructor(private _storage: LocalStorageService) { }
 
@@ -30,13 +36,6 @@ export class CartService {
     this.cart.next({ orderId: this.orderId, itemCount: amount });
   }
 
-  private cart = new BehaviorSubject({
-    orderId: this.orderId,
-    itemCount: this.itemCount
-  });
-
-  cartValue = this.cart.asObservable();
-
   incrementItemCount(amount: number) {
     this.itemCount = this.itemCount + amount;
   }
@@ -47,6 +46,6 @@ export class CartService {
 
   clearCart() {
     this._storage.deleteItem('item-count');
-    this.cart.next({ orderId: this.orderId, itemCount: 0 });
+    this.cart.next({ orderId: '', itemCount: 0 });
   }
 }
