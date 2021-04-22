@@ -10,8 +10,6 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { LoginComponent } from './pages/login/login.component';
 import { SignupComponent } from './pages/signup/signup.component';
 
-
-
 @NgModule({
   declarations: [LoginComponent, SignupComponent],
   imports: [

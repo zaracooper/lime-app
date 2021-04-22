@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroupDirective, Validators } from '@angular/forms';
 import { MatCheckboxChange } from '@angular/material/checkbox';
 import { Address } from 'src/app/data/models/address';
@@ -8,7 +8,7 @@ import { Address } from 'src/app/data/models/address';
   templateUrl: './address.component.html',
   styleUrls: ['./address.component.css']
 })
-export class AddressComponent implements OnInit {
+export class AddressComponent {
   @Input() buttonText: string = '';
   @Input() showTitle?: boolean = false;
 
@@ -32,9 +32,6 @@ export class AddressComponent implements OnInit {
   @ViewChild(FormGroupDirective) afDirective: FormGroupDirective | undefined;
 
   constructor(private _fb: FormBuilder) { }
-
-  ngOnInit() {
-  }
 
   setCountryCode(code: string) {
     this.countryCode = code;

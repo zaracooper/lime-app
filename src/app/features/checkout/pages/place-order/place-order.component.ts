@@ -65,8 +65,7 @@ export class PlaceOrderComponent implements OnInit {
       .subscribe(
         () => {
           this._snackBar.open('Your order has been successfully placed.', 'Close', { duration: 3000 });
-          this._cart.orderId = '';
-          this._cart.itemCount = 0;
+          this._cart.clearCart();
           setTimeout(() => this._router.navigateByUrl('/'), 4000);
         },
         () => {
