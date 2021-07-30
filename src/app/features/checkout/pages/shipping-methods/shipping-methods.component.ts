@@ -30,7 +30,7 @@ export class ShippingMethodsComponent implements OnInit {
     private cart: CartService,
     private router: Router,
     private fb: FormBuilder,
-    private shipments: ShipmentService,
+    private shipmentServ: ShipmentService,
     private snackBar: MatSnackBar
   ) { }
 
@@ -79,7 +79,7 @@ export class ShippingMethodsComponent implements OnInit {
     const shipmentsFormValue = this.shipmentsForm.value;
 
     combineLatest(Object.keys(shipmentsFormValue).map(
-      key => this.shipments.updateShipment(key, shipmentsFormValue[key])
+      key => this.shipmentServ.updateShipment(key, shipmentsFormValue[key])
     )).subscribe(
       () => {
         this.snackBar.open('Your shipments have been updated with a shipping method.', 'Close', { duration: 3000 });

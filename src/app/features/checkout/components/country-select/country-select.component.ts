@@ -14,10 +14,10 @@ export class CountrySelectComponent implements OnInit {
   countries: Country[] = [];
   @Output() setCountryEvent = new EventEmitter<string>();
 
-  constructor(private countries: CountryService) { }
+  constructor(private countriesServ: CountryService) { }
 
   ngOnInit() {
-    this.countries.getCountries()
+    this.countriesServ.getCountries()
       .subscribe(
         countries => {
           this.countries = countries;

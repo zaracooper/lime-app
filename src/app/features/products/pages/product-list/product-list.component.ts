@@ -61,7 +61,7 @@ export class ProductListComponent implements OnInit {
       .subscribe(
         skus => {
           this.products = skus;
-          this.length = skus[0].collectionMeta.recordCount;
+          this.length = skus[0].__collectionMeta.recordCount;
         },
         err => this.router.navigateByUrl('/error')
       );
