@@ -5,7 +5,7 @@
 npm i
 ```
 
-2. Serve the app
+2. Serve the app:
 ```
 ng serve
 ```
