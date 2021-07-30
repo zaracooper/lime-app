@@ -17,11 +17,11 @@ export class SimplePageComponent {
   @Input() route?: string | undefined;
   @Output() buttonEvent = new EventEmitter();
 
-  constructor(private _router: Router) { }
+  constructor(private router: Router) { }
 
   buttonClicked() {
     if (this.route) {
-      this._router.navigateByUrl(this.route);
+      this.router.navigateByUrl(this.route);
     } else {
       this.buttonEvent.emit();
     }

@@ -22,22 +22,22 @@ import { ShipmentService } from 'src/app/data/services/shipment.service';
 })
 export class ShippingMethodsComponent implements OnInit {
   shipments: Shipment[] | undefined = [];
-  shipmentsForm: FormGroup = this._fb.group({});
+  shipmentsForm: FormGroup = this.fb.group({});
 
   constructor(
-    private _orders: OrderService,
-    private _dlts: DeliveryLeadTimeService,
-    private _cart: CartService,
-    private _router: Router,
-    private _fb: FormBuilder,
-    private _shipments: ShipmentService,
-    private _snackBar: MatSnackBar
+    private orders: OrderService,
+    private dlts: DeliveryLeadTimeService,
+    private cart: CartService,
+    private router: Router,
+    private fb: FormBuilder,
+    private shipments: ShipmentService,
+    private snackBar: MatSnackBar
   ) { }
 
   ngOnInit() {
     combineLatest([
-      this._orders.getOrder(this._cart.orderId, GetOrderParams.shipments),
-      this._dlts.getDeliveryLeadTimes()
+      this.orders.getOrder(this.cart.orderId, GetOrderParams.shipments),
+      this.dlts.getDeliveryLeadTimes()
     ]).subscribe(
       values => {
         const lineItems = values[0].lineItems || [];
@@ -71,7 +71,7 @@ export class ShippingMethodsComponent implements OnInit {
           return shipment;
         });
       },
-      err => this._router.navigateByUrl('/error')
+      err => this.router.navigateByUrl('/error')
     );
   }
 
@@ -79,13 +79,13 @@ export class ShippingMethodsComponent implements OnInit {
     const shipmentsFormValue = this.shipmentsForm.value;
 
     combineLatest(Object.keys(shipmentsFormValue).map(
-      key => this._shipments.updateShipment(key, shipmentsFormValue[key])
+      key => this.shipments.updateShipment(key, shipmentsFormValue[key])
     )).subscribe(
       () => {
-        this._snackBar.open('Your shipments have been updated with a shipping method.', 'Close', { duration: 3000 });
-        setTimeout(() => this._router.navigateByUrl('/payment'), 4000);
+        this.snackBar.open('Your shipments have been updated with a shipping method.', 'Close', { duration: 3000 });
+        setTimeout(() => this.router.navigateByUrl('/payment'), 4000);
       },
-      err => this._snackBar.open('There was a problem adding shipping methods to your sipments.', 'Close', { duration: 5000 })
+      err => this.snackBar.open('There was a problem adding shipping methods to your sipments.', 'Close', { duration: 5000 })
     );
   }
 

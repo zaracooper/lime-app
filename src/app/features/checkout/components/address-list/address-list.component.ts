@@ -18,16 +18,16 @@ export class AddressListComponent implements OnInit {
   @Output() setAddressEvent = new EventEmitter<string>();
 
   constructor(
-    private _session: SessionService,
-    private _customerAddresses: CustomerAddressService,
-    private _snackBar: MatSnackBar
+    private session: SessionService,
+    private customerAddresses: CustomerAddressService,
+    private snackBar: MatSnackBar
   ) { }
 
   ngOnInit() {
-    this._session.loggedInStatus
+    this.session.loggedInStatus$
       .pipe(
         mergeMap(
-          status => iif(() => status, this._customerAddresses.getCustomerAddresses())
+          status => iif(() => status, this.customerAddresses.getCustomerAddresses())
         ))
       .subscribe(
         addresses => {
@@ -35,7 +35,7 @@ export class AddressListComponent implements OnInit {
             this.addresses = addresses
           }
         },
-        err => this._snackBar.open('There was a problem getting your existing addresses.', 'Close', { duration: 8000 })
+        err => this.snackBar.open('There was a problem getting your existing addresses.', 'Close', { duration: 8000 })
       );
   }
 

@@ -19,31 +19,31 @@ export class PlaceOrderComponent implements OnInit {
   disableButton = true;
 
   constructor(
-    private _route: ActivatedRoute,
-    private _router: Router,
-    private _payments: PaypalPaymentService,
-    private _orders: OrderService,
-    private _cart: CartService,
-    private _snackBar: MatSnackBar
+    private route: ActivatedRoute,
+    private router: Router,
+    private payments: PaypalPaymentService,
+    private orders: OrderService,
+    private cart: CartService,
+    private snackBar: MatSnackBar
   ) { }
 
   ngOnInit() {
-    this._route.queryParams
+    this.route.queryParams
       .pipe(
         concatMap(params => {
           const payerId = params['PayerID'];
-          const orderId = this._cart.orderId;
+          const orderId = this.cart.orderId;
 
           return iif(
             () => payerId.length > 0,
-            this._orders.getOrder(orderId, GetOrderParams.paymentSource)
+            this.orders.getOrder(orderId, GetOrderParams.paymentSource)
               .pipe(
                 concatMap(order => {
                   const paymentSourceId = order.paymentSource?.id || '';
 
                   return iif(
                     () => paymentSourceId ? paymentSourceId.length > 0 : false,
-                    this._payments.updatePaypalPayment(paymentSourceId, payerId)
+                    this.payments.updatePaypalPayment(paymentSourceId, payerId)
                   );
                 })
               )
@@ -51,25 +51,25 @@ export class PlaceOrderComponent implements OnInit {
         }))
       .subscribe(
         () => this.disableButton = false,
-        () => this._router.navigateByUrl('/error')
+        () => this.router.navigateByUrl('/error')
       );
   }
 
   placeOrder() {
     this.disableButton = true;
 
-    this._orders.updateOrder({
-      id: this._cart.orderId,
+    this.orders.updateOrder({
+      id: this.cart.orderId,
       place: true
     }, [UpdateOrderParams.place])
       .subscribe(
         () => {
-          this._snackBar.open('Your order has been successfully placed.', 'Close', { duration: 3000 });
-          this._cart.clearCart();
-          setTimeout(() => this._router.navigateByUrl('/'), 4000);
+          this.snackBar.open('Your order has been successfully placed.', 'Close', { duration: 3000 });
+          this.cart.clearCart();
+          setTimeout(() => this.router.navigateByUrl('/'), 4000);
         },
         () => {
-          this._snackBar.open('There was a problem placing your order.', 'Close', { duration: 8000 });
+          this.snackBar.open('There was a problem placing your order.', 'Close', { duration: 8000 });
           this.disableButton = false;
         }
       );

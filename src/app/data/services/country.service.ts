@@ -8,9 +8,9 @@ import { Country } from '../models/country';
 })
 export class CountryService {
 
-  constructor(private _http: HttpClient) { }
+  constructor(private http: HttpClient) { }
 
   getCountries(): Observable<Country[]> {
-    return this._http.get<Country[]>('./../../../assets/json/country-codes.json');
+    return this.http.get<Country[]>('./../../../assets/json/country-codes.json');
   }
 }

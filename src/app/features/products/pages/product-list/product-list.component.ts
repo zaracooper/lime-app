@@ -29,16 +29,16 @@ export class ProductListComponent implements OnInit {
   products: Sku[] = [];
 
   constructor(
-    private _breakpointObserver: BreakpointObserver,
-    private _skus: SkuService,
-    private _router: Router,
-    private _header: HeaderService) { }
+    private breakpointObserver: BreakpointObserver,
+    private skus: SkuService,
+    private router: Router,
+    private header: HeaderService) { }
 
   ngOnInit() {
     this.getProducts(1, 20);
-    this._header.setHeaderButtonsVisibility(true);
+    this.header.setHeaderButtonsVisibility(true);
 
-    this._breakpointObserver.observe([
+    this.breakpointObserver.observe([
       Breakpoints.Handset,
       Breakpoints.Tablet,
       Breakpoints.Web
@@ -57,13 +57,13 @@ export class ProductListComponent implements OnInit {
   }
 
   private getProducts(page: number, pageSize: number) {
-    this._skus.getSkus(page, pageSize)
+    this.skus.getSkus(page, pageSize)
       .subscribe(
         skus => {
           this.products = skus;
-          this.length = skus[0].__collectionMeta.recordCount;
+          this.length = skus[0].collectionMeta.recordCount;
         },
-        err => this._router.navigateByUrl('/error')
+        err => this.router.navigateByUrl('/error')
       );
   }
 

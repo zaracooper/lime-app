@@ -13,7 +13,7 @@ import { CustomerService } from 'src/app/data/services/customer.service';
   styleUrls: ['./signup.component.css']
 })
 export class SignupComponent implements OnInit {
-  signupForm = this._fb.group({
+  signupForm = this.fb.group({
     firstName: ['', Validators.required],
     lastName: ['', Validators.required],
     email: ['', [Validators.required, Validators.email]],
@@ -24,15 +24,15 @@ export class SignupComponent implements OnInit {
   @ViewChild(FormGroupDirective) sufDirective: FormGroupDirective | undefined;
 
   constructor(
-    private _customer: CustomerService,
-    private _fb: FormBuilder,
-    private _snackBar: MatSnackBar,
-    private _router: Router,
-    private _header: HeaderService
+    private customer: CustomerService,
+    private fb: FormBuilder,
+    private snackBar: MatSnackBar,
+    private router: Router,
+    private header: HeaderService
   ) { }
 
   ngOnInit() {
-    this._header.setHeaderButtonsVisibility(false);
+    this.header.setHeaderButtonsVisibility(false);
   }
 
   matchPasswords(signupGroup: AbstractControl): ValidationErrors | null {
@@ -49,7 +49,7 @@ export class SignupComponent implements OnInit {
   signup() {
     const customer = this.signupForm.value;
 
-    this._customer.createCustomer(
+    this.customer.createCustomer(
       customer.email,
       customer.password,
       customer.firstName,
@@ -59,11 +59,11 @@ export class SignupComponent implements OnInit {
         this.signupForm.reset();
         this.sufDirective?.resetForm();
 
-        this._snackBar.open('Account successfully created. You will be redirected in 5 seconds.', 'Close', { duration: 5000 });
+        this.snackBar.open('Account successfully created. You will be redirected in 5 seconds.', 'Close', { duration: 5000 });
 
-        setTimeout(() => this._router.navigateByUrl('/'), 6000);
+        setTimeout(() => this.router.navigateByUrl('/'), 6000);
       },
-      err => this._snackBar.open('There was a problem creating your account.', 'Close', { duration: 5000 })
+      err => this.snackBar.open('There was a problem creating your account.', 'Close', { duration: 5000 })
     );
   }
 }

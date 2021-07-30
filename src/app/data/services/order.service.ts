@@ -14,12 +14,12 @@ export class OrderService {
   private url: string = `${environment.apiUrl}/api/orders`;
 
   constructor(
-    private _http: HttpClient,
-    private _eh: HttpErrorHandler) { }
+    private http: HttpClient,
+    private eh: HttpErrorHandler) { }
 
   createOrder(): Observable<Order> {
-    return this._http.post<Order>(this.url, {})
-      .pipe(catchError(this._eh.handleError));
+    return this.http.post<Order>(this.url, {})
+      .pipe(catchError(this.eh.handleError));
   }
 
   getOrder(id: string, orderParam: GetOrderParams): Observable<Order> {
@@ -28,8 +28,8 @@ export class OrderService {
       params = { [orderParam]: 'true' };
     }
 
-    return this._http.get<Order>(`${this.url}/${id}`, { params: params })
-      .pipe(catchError(this._eh.handleError));
+    return this.http.get<Order>(`${this.url}/${id}`, { params: params })
+      .pipe(catchError(this.eh.handleError));
   }
 
   updateOrder(order: Order, params: UpdateOrderParams[]): Observable<Order> {
@@ -38,16 +38,16 @@ export class OrderService {
       updateParams.push(param.toString());
     }
 
-    return this._http.patch<Order>(
+    return this.http.patch<Order>(
       `${this.url}/${order.id}`,
       order,
       { params: { 'field': updateParams } }
     )
-      .pipe(catchError(this._eh.handleError));
+      .pipe(catchError(this.eh.handleError));
   }
 
   getOrderShipments(id: string): Observable<Shipment[]> {
-    return this._http.get<Shipment[]>(`${this.url}/${id}/shipments`)
-      .pipe(catchError(this._eh.handleError));
+    return this.http.get<Shipment[]>(`${this.url}/${id}/shipments`)
+      .pipe(catchError(this.eh.handleError));
   }
 }

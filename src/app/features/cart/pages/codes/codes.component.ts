@@ -19,30 +19,30 @@ export class CodesComponent {
   @ViewChild(FormControlDirective) codesDirective: FormControlDirective | undefined;
 
   constructor(
-    private _cart: CartService,
-    private _order: OrderService,
-    private _snackBar: MatSnackBar
+    private cart: CartService,
+    private order: OrderService,
+    private snackBar: MatSnackBar
   ) { }
 
   private updateOrder(order: Order, params: UpdateOrderParams[], codeType: string) {
-    this._order.updateOrder(order, params)
+    this.order.updateOrder(order, params)
       .subscribe(
         () => {
-          this._snackBar.open(`Successfully added ${codeType} code.`, 'Close', { duration: 8000 });
+          this.snackBar.open(`Successfully added ${codeType} code.`, 'Close', { duration: 8000 });
           this.couponCode.reset();
           this.giftCardCode.reset();
           this.codesDirective?.reset();
         },
-        err => this._snackBar.open(`There was a problem adding your ${codeType} code.`, 'Close', { duration: 8000 })
+        err => this.snackBar.open(`There was a problem adding your ${codeType} code.`, 'Close', { duration: 8000 })
       );
   }
 
   addCoupon() {
-    this.updateOrder({ id: this._cart.orderId, couponCode: this.couponCode.value }, [UpdateOrderParams.couponCode], 'coupon');
+    this.updateOrder({ id: this.cart.orderId, couponCode: this.couponCode.value }, [UpdateOrderParams.couponCode], 'coupon');
   }
 
   addGiftCard() {
-    this.updateOrder({ id: this._cart.orderId, giftCardCode: this.giftCardCode.value }, [UpdateOrderParams.giftCardCode], 'gift card');
+    this.updateOrder({ id: this.cart.orderId, giftCardCode: this.giftCardCode.value }, [UpdateOrderParams.giftCardCode], 'gift card');
   }
 
 }

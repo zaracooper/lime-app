@@ -19,33 +19,33 @@ export class PaymentComponent implements OnInit {
   approvalUrl: string = '';
 
   constructor(
-    private _orders: OrderService,
-    private _cart: CartService,
-    private _router: Router,
-    private _payments: PaypalPaymentService
+    private orders: OrderService,
+    private cart: CartService,
+    private router: Router,
+    private payments: PaypalPaymentService
   ) { }
 
   ngOnInit() {
-    const orderId = this._cart.orderId;
+    const orderId = this.cart.orderId;
 
-    this._orders.getOrder(orderId, GetOrderParams.paymentSource)
+    this.orders.getOrder(orderId, GetOrderParams.paymentSource)
       .pipe(
         concatMap((order: Order) => {
           const paymentSourceId = order.paymentSource?.id;
 
           const paymentMethod = order.availablePaymentMethods?.filter(
-            (method) => method.paymentSourceType == 'paypal_payments'
+            (method) => method.paymentSourceType == 'paypalpayments'
           )[0];
 
           return iif(
             () => paymentSourceId ? true : false,
-            this._payments.getPaypalPayment(paymentSourceId || ''),
-            this._orders.updateOrder({
+            this.payments.getPaypalPayment(paymentSourceId || ''),
+            this.orders.updateOrder({
               id: orderId,
               paymentMethodId: paymentMethod?.id
             }, [UpdateOrderParams.paymentMethod])
               .pipe(concatMap(
-                order => this._payments.createPaypalPayment({
+                order => this.payments.createPaypalPayment({
                   orderId: orderId,
                   cancelUrl: `${environment.clientUrl}/cancel-payment`,
                   returnUrl: `${environment.clientUrl}/place-order`
@@ -55,7 +55,7 @@ export class PaymentComponent implements OnInit {
         }))
       .subscribe(
         paypalPayment => this.approvalUrl = paypalPayment?.approvalUrl || '',
-        err => this._router.navigateByUrl('/error')
+        err => this.router.navigateByUrl('/error')
       );
   }
 

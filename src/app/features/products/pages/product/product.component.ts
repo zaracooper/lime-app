@@ -24,45 +24,45 @@ export class ProductComponent implements OnInit {
   quantity: number = 0;
 
   constructor(
-    private _route: ActivatedRoute,
-    private _skus: SkuService,
-    private _location: Location,
-    private _router: Router,
-    private _header: HeaderService,
-    private _orders: OrderService,
-    private _lineItems: LineItemService,
-    private _cart: CartService,
-    private _snackBar: MatSnackBar
+    private route: ActivatedRoute,
+    private skus: SkuService,
+    private location: Location,
+    private router: Router,
+    private header: HeaderService,
+    private orders: OrderService,
+    private lineItems: LineItemService,
+    private cart: CartService,
+    private snackBar: MatSnackBar
   ) { }
 
   ngOnInit() {
-    this._route.paramMap
+    this.route.paramMap
       .pipe(
         mergeMap(params => {
           const id = params.get('id')
           this.id = id ? id : '';
 
-          return this._skus.getSku(this.id);
+          return this.skus.getSku(this.id);
         }),
         map((sku) => {
           this.product = sku;
         })
       ).subscribe({
-        error: (err) => this._router.navigateByUrl('/error')
+        error: (err) => this.router.navigateByUrl('/error')
       });
 
-    this._header.setHeaderButtonsVisibility(true);
+    this.header.setHeaderButtonsVisibility(true);
   }
 
   addItemToCart() {
     if (this.quantity > 0) {
-      if (this._cart.orderId == '') {
-        this._orders.createOrder()
+      if (this.cart.orderId == '') {
+        this.orders.createOrder()
           .pipe(
             mergeMap((order: Order) => {
-              this._cart.orderId = order.id || '';
+              this.cart.orderId = order.id || '';
 
-              return this._lineItems.createLineItem({
+              return this.lineItems.createLineItem({
                 orderId: order.id,
                 name: this.product.name,
                 imageUrl: this.product.imageUrl,
@@ -73,28 +73,28 @@ export class ProductComponent implements OnInit {
           )
           .subscribe(
             () => {
-              this._cart.incrementItemCount(this.quantity);
+              this.cart.incrementItemCount(this.quantity);
               this.showSuccessSnackBar();
             },
             err => this.showErrorSnackBar()
           );
       } else {
-        this._lineItems.createLineItem({
-          orderId: this._cart.orderId,
+        this.lineItems.createLineItem({
+          orderId: this.cart.orderId,
           name: this.product.name,
           imageUrl: this.product.imageUrl,
           quantity: this.quantity,
           skuCode: this.product.code
         }).subscribe(
           () => {
-            this._cart.incrementItemCount(this.quantity);
+            this.cart.incrementItemCount(this.quantity);
             this.showSuccessSnackBar();
           },
           err => this.showErrorSnackBar()
         );
       }
     } else {
-      this._snackBar.open('Select a quantity greater than 0.', 'Close', { duration: 8000 });
+      this.snackBar.open('Select a quantity greater than 0.', 'Close', { duration: 8000 });
     }
   }
 
@@ -103,14 +103,14 @@ export class ProductComponent implements OnInit {
   }
 
   goBack() {
-    this._location.back();
+    this.location.back();
   }
 
   private showSuccessSnackBar() {
-    this._snackBar.open('Item successfully added to cart.', 'Close', { duration: 8000 });
+    this.snackBar.open('Item successfully added to cart.', 'Close', { duration: 8000 });
   }
 
   private showErrorSnackBar() {
-    this._snackBar.open('Failed to add your item to the cart.', 'Close', { duration: 8000 });
+    this.snackBar.open('Failed to add your item to the cart.', 'Close', { duration: 8000 });
   }
 }

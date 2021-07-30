@@ -7,7 +7,7 @@ import { BehaviorSubject } from 'rxjs';
 export class HeaderService {
   private headerButtonsVisibility = new BehaviorSubject(true);
 
-  showHeaderButtons = this.headerButtonsVisibility.asObservable();
+  showHeaderButtons$ = this.headerButtonsVisibility.asObservable();
 
   constructor() { }
 

@@ -11,21 +11,21 @@ import { HttpErrorHandler } from 'src/app/shared/services/http-error-handler.ser
 export class AuthenticationService {
   private url: string = `${environment.apiUrl}/oauth`;
 
-  constructor(private _http: HttpClient, private _eh: HttpErrorHandler) { }
+  constructor(private http: HttpClient, private eh: HttpErrorHandler) { }
 
   getClientSession(): Observable<object> {
-    return this._http.post<object>(
+    return this.http.post<object>(
       `${this.url}/token`,
-      { grantType: 'client_credentials' },
+      { grantType: 'clientcredentials' },
       { headers: { 'Content-Type': 'application/json' } })
-      .pipe(catchError(this._eh.handleError));
+      .pipe(catchError(this.eh.handleError));
   }
 
   login(email: string, password: string): Observable<object> {
-    return this._http.post<object>(
+    return this.http.post<object>(
       `${this.url}/token`,
       { username: email, password: password, grantType: 'password' },
       { headers: { 'Content-Type': 'application/json' } })
-      .pipe(catchError(this._eh.handleError));
+      .pipe(catchError(this.eh.handleError));
   }
 }

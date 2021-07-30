@@ -20,39 +20,39 @@ export class HeaderComponent implements OnInit {
   showButtons: boolean = true;
 
   constructor(
-    private _session: SessionService,
-    private _snackBar: MatSnackBar,
-    private _cart: CartService,
-    private _header: HeaderService,
-    private _auth: AuthenticationService
+    private session: SessionService,
+    private snackBar: MatSnackBar,
+    private cart: CartService,
+    private header: HeaderService,
+    private auth: AuthenticationService
   ) { }
 
   ngOnInit() {
-    this._session.isCustomerLoggedIn()
+    this.session.isCustomerLoggedIn()
       .subscribe(
         () => {
           this.isLoggedIn = true;
-          this._session.setLoggedInStatus(true);
+          this.session.setLoggedInStatus(true);
         }
       );
 
-    this._session.loggedInStatus.subscribe(status => this.isLoggedIn = status);
+    this.session.loggedInStatus$.subscribe(status => this.isLoggedIn = status);
 
-    this._header.showHeaderButtons.subscribe(visible => this.showButtons = visible);
+    this.header.showHeaderButtons$.subscribe(visible => this.showButtons = visible);
 
-    this._cart.cartValue.subscribe(cart => this.cartAmount = cart.itemCount);
+    this.cart.cartValue.subscribe(cart => this.cartAmount = cart.itemCount);
   }
 
   logout() {
     concat(
-      this._session.logout(),
-      this._auth.getClientSession()
+      this.session.logout(),
+      this.auth.getClientSession()
     ).subscribe(
       () => {
-        this._snackBar.open('You have been logged out.', 'Close', { duration: 4000 });
-        this._session.setLoggedInStatus(false);
+        this.snackBar.open('You have been logged out.', 'Close', { duration: 4000 });
+        this.session.setLoggedInStatus(false);
       },
-      err => this._snackBar.open('There was a problem logging you out.', 'Close', { duration: 4000 })
+      err => this.snackBar.open('There was a problem logging you out.', 'Close', { duration: 4000 })
     );
   }
 }

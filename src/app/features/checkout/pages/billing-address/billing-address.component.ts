@@ -25,16 +25,16 @@ export class BillingAddressComponent implements OnInit {
   selectedCustomerAddressId: string = '';
 
   constructor(
-    private _addresses: AddressService,
-    private _snackBar: MatSnackBar,
-    private _session: SessionService,
-    private _orders: OrderService,
-    private _cart: CartService,
-    private _router: Router,
-    private _customerAddresses: CustomerAddressService) { }
+    private addresses: AddressService,
+    private snackBar: MatSnackBar,
+    private session: SessionService,
+    private orders: OrderService,
+    private cart: CartService,
+    private router: Router,
+    private customerAddresses: CustomerAddressService) { }
 
   ngOnInit() {
-    this._session.loggedInStatus
+    this.session.loggedInStatus$
       .subscribe(
         status => this.showAddresses = status
       );
@@ -47,7 +47,7 @@ export class BillingAddressComponent implements OnInit {
       this.createAddress(address);
     }
     else {
-      this._snackBar.open('Check your address. Some fields are missing.', 'Close');
+      this.snackBar.open('Check your address. Some fields are missing.', 'Close');
     }
   }
 
@@ -60,17 +60,17 @@ export class BillingAddressComponent implements OnInit {
   }
 
   private createAddress(address: Address) {
-    this._addresses.createAddress(address)
+    this.addresses.createAddress(address)
       .pipe(
         concatMap(
           address => {
             const update = this.updateOrderObservable({
-              id: this._cart.orderId,
+              id: this.cart.orderId,
               billingAddressId: address.id
             }, [UpdateOrderParams.billingAddress]);
 
             if (this.showAddresses) {
-              return combineLatest([update, this._customerAddresses.createCustomerAddress(address.id || '', '')]);
+              return combineLatest([update, this.customerAddresses.createCustomerAddress(address.id || '', '')]);
             } else {
               return update;
             }
@@ -83,7 +83,7 @@ export class BillingAddressComponent implements OnInit {
 
   private cloneAddress() {
     this.updateOrderObservable({
-      id: this._cart.orderId,
+      id: this.cart.orderId,
       billingAddressCloneId: this.selectedCustomerAddressId
     }, [UpdateOrderParams.billingAddressClone])
       .subscribe(
@@ -95,23 +95,23 @@ export class BillingAddressComponent implements OnInit {
   private updateOrderObservable(order: Order, updateParams: UpdateOrderParams[]): Observable<any> {
     return iif(() => this.sameShippingAddressAsBilling,
       concat([
-        this._orders.updateOrder(order, updateParams),
-        this._orders.updateOrder(order, [UpdateOrderParams.shippingAddressSameAsBilling])
+        this.orders.updateOrder(order, updateParams),
+        this.orders.updateOrder(order, [UpdateOrderParams.shippingAddressSameAsBilling])
       ]),
-      this._orders.updateOrder(order, updateParams)
+      this.orders.updateOrder(order, updateParams)
     );
   }
 
   private showErrorSnackBar() {
-    this._snackBar.open('There was a problem creating your address.', 'Close', { duration: 8000 });
+    this.snackBar.open('There was a problem creating your address.', 'Close', { duration: 8000 });
   }
 
   private navigateTo(path: string) {
-    setTimeout(() => this._router.navigateByUrl(path), 4000);
+    setTimeout(() => this.router.navigateByUrl(path), 4000);
   }
 
   private showSuccessSnackBar() {
-    this._snackBar.open('Billing address successfully added. Redirecting...', 'Close', { duration: 3000 });
+    this.snackBar.open('Billing address successfully added. Redirecting...', 'Close', { duration: 3000 });
     if (this.sameShippingAddressAsBilling) {
       this.navigateTo('/shipping-methods');
     } else {

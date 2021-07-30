@@ -19,7 +19,7 @@ export class AddressComponent {
 
   countryCode: string = '';
 
-  addressForm = this._fb.group({
+  addressForm = this.fb.group({
     firstName: [''],
     lastName: [''],
     line1: [''],
@@ -31,7 +31,7 @@ export class AddressComponent {
 
   @ViewChild(FormGroupDirective) afDirective: FormGroupDirective | undefined;
 
-  constructor(private _fb: FormBuilder) { }
+  constructor(private fb: FormBuilder) { }
 
   setCountryCode(code: string) {
     this.countryCode = code;

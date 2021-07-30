@@ -14,37 +14,37 @@ import { HeaderService } from 'src/app/core/services/header.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  loginForm = this._fb.group({
+  loginForm = this.fb.group({
     email: ['', Validators.required],
     password: ['', Validators.required]
   });
 
   constructor(
-    private _authService: AuthenticationService,
-    private _session: SessionService,
-    private _snackBar: MatSnackBar,
-    private _fb: FormBuilder,
-    private _header: HeaderService,
-    private _location: Location
+    private authService: AuthenticationService,
+    private session: SessionService,
+    private snackBar: MatSnackBar,
+    private fb: FormBuilder,
+    private header: HeaderService,
+    private location: Location
   ) { }
 
   ngOnInit() {
-    this._header.setHeaderButtonsVisibility(false);
+    this.header.setHeaderButtonsVisibility(false);
   }
 
   login() {
     const credentials = this.loginForm.value;
 
-    this._authService.login(
+    this.authService.login(
       credentials.email,
       credentials.password
     ).subscribe(
       () => {
-        this._session.setLoggedInStatus(true);
-        this._location.back();
+        this.session.setLoggedInStatus(true);
+        this.location.back();
       },
       err => {
-        this._snackBar.open(
+        this.snackBar.open(
           'Login failed. Check your login credentials.',
           'Close',
           { duration: 6000 });

@@ -20,15 +20,15 @@ export class SummaryComponent implements OnInit {
   summary: { name: string, amount: string | undefined, id: string }[] = [];
 
   constructor(
-    private _orders: OrderService,
-    private _lineItems: LineItemService,
-    private _cart: CartService,
-    private _snackBar: MatSnackBar,
-    private _router: Router
+    private orders: OrderService,
+    private lineItems: LineItemService,
+    private cart: CartService,
+    private snackBar: MatSnackBar,
+    private router: Router
   ) { }
 
   ngOnInit() {
-    this._orders.getOrder(this._cart.orderId, GetOrderParams.cart)
+    this.orders.getOrder(this.cart.orderId, GetOrderParams.cart)
       .subscribe(
         order => this.processOrder(order),
         err => this.showOrderError('retrieving your cart')
@@ -48,22 +48,22 @@ export class SummaryComponent implements OnInit {
   }
 
   private showOrderError(msg: string) {
-    this._snackBar.open(`There was a problem ${msg}.`, 'Close', { duration: 8000 });
+    this.snackBar.open(`There was a problem ${msg}.`, 'Close', { duration: 8000 });
   }
 
   checkout() {
-    this._router.navigateByUrl('/customer');
+    this.router.navigateByUrl('/customer');
   }
 
   deleteLineItem(id: string) {
-    this._lineItems.deleteLineItem(id)
+    this.lineItems.deleteLineItem(id)
       .pipe(
-        mergeMap(() => this._orders.getOrder(this._cart.orderId, GetOrderParams.cart))
+        mergeMap(() => this.orders.getOrder(this.cart.orderId, GetOrderParams.cart))
       ).subscribe(
         order => {
           this.processOrder(order);
-          this._cart.itemCount = order.skusCount || this._cart.itemCount;
-          this._snackBar.open(`Item successfully removed from cart.`, 'Close', { duration: 8000 })
+          this.cart.itemCount = order.skusCount || this.cart.itemCount;
+          this.snackBar.open(`Item successfully removed from cart.`, 'Close', { duration: 8000 })
         },
         err => this.showOrderError('deleting your order')
       );
